@@ -1,0 +1,31 @@
+Package: SVect
+Title: Functions to Make Vectorial Comparations on Amino Acid Sequence
+Version: 0.99.0
+Authors@R: 
+    person(given = "Roberto",
+           family = "Raitz",
+           role = "aut",
+           email = "raittz@ufpr.br")
+	person(given = "Mariane",
+           family = "G. Kulik",
+           role = "aut")
+    person(given = "Danrley R. Fernandes",
+           role = c("com", "cre","aut"),
+           email = "DanrleyRF@gmail.com")
+Description: The SVect method was developed to favor the comparison between complete genomic sequences and to assist in phylogenetic analyzes. This method is based on the concept of sparse words, which are used to scan biological sequences and turn them into vectors, favoring the manipulation of the data.
+biocViews: Software,StatisticalMethod,SupportVectorMachine,Technology,Sequencing,Genetics 
+Depends: R (>= 3.6)
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Imports: 
+    pracma,
+    stats,
+    ape,
+    seqinr
+Suggests: 
+    knitr,
+    rmarkdown,
+    BiocStyle
+VignetteBuilder: knitr

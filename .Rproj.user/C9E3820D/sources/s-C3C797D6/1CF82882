@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1558717631377.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1CF82882",
+    "lastKnownWriteTime" : 1557164483,
+    "last_content_update" : 1557164483,
+    "path" : "~/SVect/R/ij2inds.R",
+    "project_path" : "R/ij2inds.R",
+    "properties" : {
+        "cursorPosition" : "1,44",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
