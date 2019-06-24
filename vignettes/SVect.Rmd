@@ -1,5 +1,5 @@
 ---
-title: "Svect: Fast Vectorial Alignments"
+title: "Fast Vectorial Alignments"
 author:
 - name: Roberto Raitz
   affiliation: 
