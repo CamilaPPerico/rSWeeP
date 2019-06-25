@@ -11,7 +11,7 @@
 #'
 #' @author Roberto Raitz, et. al.
 #'
-#' @seealso \code{\link[SVect]{SWeeP}}, \code{\link[pracma]{orth}}
+#' @seealso \code{\link[rSWeeP]{SWeeP}}, \code{\link[pracma]{orth}}
 #' @examples
 #' orthbase(160000, 10)
 #'

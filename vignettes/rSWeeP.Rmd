@@ -1,5 +1,5 @@
 ---
-title: "Svect: An tool for Fast Vectorial Alignments"
+title: "rSWeeP: Representing large biological sequences data sets in compact vectors."
 author:
 - name: Roberto Raitz
   affiliation: 
@@ -45,11 +45,11 @@ author:
   affiliation: Federal University of Paraná, Graduate in Biological Sciences, Curitiba, Paraná, Brazil.
 output:
   BiocStyle::html_document
-package: SVect
+package: rSWeeP
 abstract: |
  This is a package with a couple of functions to possibilite the use of the SWeep method in R. It is a tool that vises to provide for fast alignment free DNA analysis.
 vignette: >
-  %\VignetteIndexEntry{Svect}
+  %\VignetteIndexEntry{rSWeeP}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -62,7 +62,7 @@ The package has two functions: orthbase, that generates an orthonormal matrix of
 # Quick Start
  The orthbase function can create a orthonormal matrix in any desired size. Here it is used to create a matrix to project the SWeeP method, so it must have 160.000 rows and the columns of the size wished for projection.
 ```{r}
-library(SVect)
+library(rSWeeP)
 baseMatrix <- orthbase(160000,10)
 ```
 The **exdna.face** dataset consists in a list of three strings that simulates a DNA sequence  used for demonstration purposes only.

@@ -28,7 +28,7 @@ orthbase(lin = lin, col = col)
 
 }
 \seealso{
-\code{\link[SVect]{SWeeP}}, \code{\link[pracma]{orth}}
+\code{\link[rSWeeP]{SWeeP}}, \code{\link[pracma]{orth}}
 }
 \author{
 Roberto Raitz, et. al.

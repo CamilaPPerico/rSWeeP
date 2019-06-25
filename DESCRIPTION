@@ -1,4 +1,4 @@
-Package: SVect
+Package: rSWeeP
 Title: Functions to Make Vectorial Comparations on Amino Acid Sequence
 Version: 0.99.0
 Authors@R: 

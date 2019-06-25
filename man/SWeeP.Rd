@@ -17,7 +17,7 @@ in the \code{orthBase} matrix
 }
 \description{
 The "Spaced Words Projection (SWeeP)" is a method for
-representing biological sequences using relatively, it uses the
+representing biological sequences using relativety, it uses the
 spacedwords concept by scanning sequences and generating indices
 to create a higherdimensional vector that is later projected into a
 smaller randomly oriented orthonormal base (PIERRI, 2019)
@@ -45,7 +45,7 @@ Pierri,C. R. et al. SWeeP: Representing large biological
 sequences data sets in compact vectors. (2019).
 }
 \seealso{
-\code{\link[SVect]{orthbase}}
+\code{\link[rSWeeP]{orthbase}}
 }
 \author{
 Roberto Raitz, et. al.

@@ -1,7 +1,7 @@
 #' @title A vectorial comparative method to amino acid sequence.
 #' @name SWeeP
 #' @description The "Spaced Words Projection (SWeeP)" is a method for
-#' representing biological sequences using relatively, it uses the
+#' representing biological sequences using relativety, it uses the
 #' spacedwords concept by scanning sequences and generating indices
 #' to create a higherdimensional vector that is later projected into a
 #' smaller randomly oriented orthonormal base (PIERRI, 2019)
@@ -17,7 +17,7 @@
 #' @return A matrix resulted by the projection of the sequences in \code{file}
 #' in the \code{orthBase} matrix
 #' @author Roberto Raitz, et. al.
-#' @seealso \code{\link[SVect]{orthbase}}
+#' @seealso \code{\link[rSWeeP]{orthbase}}
 #' @references Pierri,C. R. et al. SWeeP: Representing large biological
 #' sequences data sets in compact vectors. (2019).
 #' @examples
