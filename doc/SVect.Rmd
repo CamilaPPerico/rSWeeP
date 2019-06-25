@@ -47,34 +47,40 @@ output:
   BiocStyle::html_document
 package: SVect
 abstract: |
- This package possibilite the use of SWeep method in R. This method provides a powerful tool to alignment free DNA analysis.
+ This is a package with a couple of functions to possibilite the use of the SWeep method in R. It is a tool that vises to provide for fast alignment free DNA analysis.
 vignette: >
   %\VignetteIndexEntry{Svect}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-# What is this?
-This is a package with a couple of functions to possibilite the use of the SWeep method in R
+# Overview
+The “Spaced Words Projection (SWeeP)” is a method for representing biological sequences using relatively, it uses the spacedwords concept by scanning sequences and generating indices to create a higherdimensional vector that is later projected into a smaller randomly oriented orthonormal base. This function is suitable for making high quality comparisons between sequences allowing analyzes that are not possible due to the computational limitation of the traditional techniques. The method is available at [SWeeP](https://sourceforge.net/projects/spacedwordsprojection/) (PIERRI, 2019). This tool has it's main speed gain in  constanci  processing time. The response time grows linear to the number of inputs, while in other methods it grow is exponencial.
 
-## What is SweeP?
-The “Spaced Words Projection (SWeeP)” is a method for representing biological sequences using relatively, it uses the spacedwords concept by scanning sequences and generating indices to create a higherdimensional vector that is later projected into a smaller randomly oriented orthonormal base. This function is suitable for making high quality comparisons between sequences allowing analyzes that are not possible due to the computational limitation of the traditional techniques. The method is available at [SWeeP](https://sourceforge.net/projects/spacedwordsprojection/) (PIERRI, 2019). 
+## Functions
+The package has two functions: orthbase, that generates an orthonormal matrix of a chosen size, and SWeeP, a function that applies the SWeeP method
 
-## How fast is this method?
-The main speed gain in this method is the constanci in the processing time. The response time grows linear to the number of inputs, while in other methods that grow is exponencial
-
-# What is in?
-Two functions orthbase, that generates an orthonormal matrix of a chosen size, and SWeeP, a function that applies the SWeeP method
-
-# How to use?
+# Quick Start
+ The orthbase function can create a orthonormal matrix in any desired size. Here it is used to create a matrix to project the SWeeP method, so it must have 160.000 rows and the columns of the size wished for projection.
 ```{r}
 library(SVect)
 baseMatrix <- orthbase(160000,10)
+```
+The **exdna.face** dataset consists in a list of three strings that simulates a DNA sequence  used for demonstration purposes only.
+```{r}
 data(datastring)
 cat(datastring, file = "exdna.fas", sep = "\n")
+```
+Then the SWeeP method is applied and the returns a matrix that represents the sequences compared by a vectorial method.  And then it's possible to see a graphic  representation in a phylogenetic tree 
+```{r}
 return <- SWeeP("exdna.fas",baseMatrix)
 distancia <- dist(return, method = "euclidean")
 tree <- hclust(distancia, method="ward.D")
 plot(tree, hang = -1, cex = 1)
+```
+
+# Session information 
+```{r label='Session information', eval=TRUE, echo=FALSE}
+sessionInfo()
 ```
 
 # References
