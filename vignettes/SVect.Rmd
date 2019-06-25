@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ---
 title: "Fast Vectorial Alignments"
 author:
