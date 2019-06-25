@@ -3,7 +3,7 @@ Title: Functions to Make Vectorial Comparations on Amino Acid Sequence
 Version: 0.99.0
 Authors@R: 
     person(given = "Roberto",
-           family = "Raitz",
+           family = "Raittz",
            role = "aut",
            email = "raittz@ufpr.br")
 	person(given = "Mariane",

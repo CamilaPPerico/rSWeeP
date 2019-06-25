@@ -1,7 +1,7 @@
 ---
 title: "rSWeeP: Representing large biological sequences data sets in compact vectors."
 author:
-- name: Roberto Raitz
+- name: Roberto Raittz
   affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
    - Federal University of Paraná, Department of Biochemistry and Molecular Biology, Curitiba, Paraná, Brazil.

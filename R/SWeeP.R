@@ -16,7 +16,7 @@
 #' in \code{orthBase} matrix.
 #' @return A matrix resulted by the projection of the sequences in \code{file}
 #' in the \code{orthBase} matrix
-#' @author Roberto Raitz, et. al.
+#' @author Roberto Raittz, et. al.
 #' @seealso \code{\link[rSWeeP]{orthbase}}
 #' @references Pierri,C. R. et al. SWeeP: Representing large biological
 #' sequences data sets in compact vectors. (2019).
