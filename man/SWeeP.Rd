@@ -9,7 +9,7 @@ SWeeP(file, orthBase)
 \arguments{
 \item{file}{A FASTA format file}
 
-\item{orthBase}{A orthonormal matrix with 160.000 rows}
+\item{orthBase}{A orthonormal matrix with 160.000 coordinates}
 }
 \value{
 A matrix resulted by the projection of the sequences in \code{file}
@@ -17,17 +17,17 @@ in the \code{orthBase} matrix
 }
 \description{
 The "Spaced Words Projection (SWeeP)" is a method for
-representing biological sequences using relativety, it uses the
+representing biological sequences using compact vectors. SWeeP uses the
 spacedwords concept by scanning sequences and generating indices
 to create a higherdimensional vector that is later projected into a
 smaller randomly oriented orthonormal base (PIERRI, 2019)
 }
 \details{
 The SWeeP method was developed to favor the comparison between
-complete genomic sequences and to assist in phylogenetic analyzes. This
-method is based on the concept of sparse words, which are used to scan
-biological sequences and turn them into vectors, favoring the manipulation
-of the data. It can project a matrix n by m, where n is the number of
+complete genomic sequences and to assist in machine learning analyzes. This
+method is based on the concept of spaced words, which are used to scan
+biological sequences and project them into vectors, favoring the manipulation
+of the data. SWeeP can project a matrix n by m, where n is the number of
 sequences in the analized \code{file} and m is the number of columns
 in \code{orthBase} matrix.
 }

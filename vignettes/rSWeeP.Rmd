@@ -1,22 +1,14 @@
 ---
-title: "rSWeeP: Representing large biological sequences data sets in compact vectors."
+title: "rSWeeP: Representations large biological sequences datasets in compact vectors on an R platform."
 author:
 - name: Danrley Rafael Fernandes
   affiliation: Federal University of Paraná, Graduate in Biological Sciences, Curitiba, Paraná, Brazil.
-- name: Mariane Gonçalves Kulik 
-  affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
--  name: Ricardo Voyceik 
-   affiliation: Federal University of Minas Gerais, Institute of Biological Sciences (ICB), Belo Horizonte, Minas Gerais, Brazil.
--  name: Letícia Graziela Costa Santos de Mattos 
-   affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.  
--  name: Josué Oliveira Camargo 
+-  name: Camilla Reginatto De Pierri
    affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
    - Federal University of Paraná, Department of Biochemistry and Molecular Biology, Curitiba, Paraná, Brazil.
--  name: Aryel Marlus Repula de Oliveira
-   affiliation: 
-   - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil. 
-   - Federal University of Paraná, Department of Genetics, Curitiba, Paraná, Brazil.
+- name: Mariane Gonçalves Kulik 
+  affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
 -  name: Bruno Thiago de Lima Nichio
    affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
@@ -24,16 +16,9 @@ author:
 -  name: Jeroniza Nunes Marchaukoski
    affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
--  name: Antonio Camilo da Silva Filho
-   affiliation: 
-   - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
-   - Federal University of Paraná, Department of Pharmaceutical Sciences, Curitiba, Paraná, Brazil.
 -  name: Dieval Guizelini
    affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
--  name: José Miguel Ortega
-   affiliation: 
-   - Federal University of Minas Gerais, Institute of Biological Sciences (ICB), Belo Horizonte, Minas Gerais, Brazil.
 -  name: Fabio de Oliveira Pedrosa
    affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
@@ -42,7 +27,6 @@ author:
   affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
    - Federal University of Paraná, Department of Biochemistry and Molecular Biology, Curitiba, Paraná, Brazil.
-   - Federal University of Paraná, Department of Genetics, Curitiba, Paraná, Brazil.
 output:
   BiocStyle::html_document
 package: rSWeeP
