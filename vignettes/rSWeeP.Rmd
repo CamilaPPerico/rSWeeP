@@ -1,11 +1,8 @@
 ---
 title: "rSWeeP: Representing large biological sequences data sets in compact vectors."
 author:
-- name: Roberto Raittz
-  affiliation: 
-   - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
-   - Federal University of Paraná, Department of Biochemistry and Molecular Biology, Curitiba, Paraná, Brazil.
-   - Federal University of Paraná, Department of Genetics, Curitiba, Paraná, Brazil.
+- name: Danrley Rafael Fernandes
+  affiliation: Federal University of Paraná, Graduate in Biological Sciences, Curitiba, Paraná, Brazil.
 - name: Mariane Gonçalves Kulik 
   affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
 -  name: Ricardo Voyceik 
@@ -41,8 +38,11 @@ author:
    affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
    - Federal University of Paraná, Department of Biochemistry and Molecular Biology, Curitiba, Paraná, Brazil.  
-- name: Danrley Rafael Fernandes
-  affiliation: Federal University of Paraná, Graduate in Biological Sciences, Curitiba, Paraná, Brazil.
+- name: Roberto Raittz
+  affiliation: 
+   - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
+   - Federal University of Paraná, Department of Biochemistry and Molecular Biology, Curitiba, Paraná, Brazil.
+   - Federal University of Paraná, Department of Genetics, Curitiba, Paraná, Brazil.
 output:
   BiocStyle::html_document
 package: rSWeeP
@@ -60,12 +60,12 @@ The “Spaced Words Projection (SWeeP)” is a method for representing biologica
 The package has two functions: orthbase, that generates an orthonormal matrix of a chosen size, and SWeeP, a function that applies the SWeeP method
 
 # Quick Start
- The orthbase function can create a orthonormal matrix in any desired size. Here it is used to create a matrix to project the SWeeP method, so it must have 160.000 rows and the columns of the size wished for projection.
+ The orthbase function can create a quasi-orthonormal matrix in any desired size. Here it is used to create a matrix to project the SWeeP method, so it must have 160.000 rows and the columns of the size wished for projection.
 ```{r}
 library(rSWeeP)
 baseMatrix <- orthbase(160000,10)
 ```
-The **exdna.face** dataset consists in a list of three strings that simulates a DNA sequence  used for demonstration purposes only.
+The **exdna.fas** dataset consists in a list of three strings that simulates a DNA sequence  used for demonstration purposes only.
 ```{r}
 data(datastring)
 cat(datastring, file = "exdna.fas", sep = "\n")

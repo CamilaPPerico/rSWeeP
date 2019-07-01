@@ -31,5 +31,5 @@ orthbase(lin = lin, col = col)
 \code{\link[rSWeeP]{SWeeP}}, \code{\link[pracma]{orth}}
 }
 \author{
-Roberto Raitz, et. al.
+Roberto Raittz, et. al.
 }

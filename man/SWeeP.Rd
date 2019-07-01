@@ -48,5 +48,5 @@ sequences data sets in compact vectors. (2019).
 \code{\link[rSWeeP]{orthbase}}
 }
 \author{
-Roberto Raitz, et. al.
+Roberto Raittz, et. al.
 }
