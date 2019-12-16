@@ -42,11 +42,12 @@ plot(tree, hang = -1, cex = 1)
 }
 \references{
 Pierri,C. R. et al. SWeeP: Representing large biological
-sequences data sets in compact vectors. (2019).
+sequences data sets in compact vectors. Scientific Reports, accepted in
+December 2019.doi: 10.1038/s41598-019-55627-4.
 }
 \seealso{
 \code{\link[rSWeeP]{orthbase}}
 }
 \author{
-Roberto Raittz, et. al.
+Danrley R. Fernandes.
 }

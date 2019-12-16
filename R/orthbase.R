@@ -9,7 +9,7 @@
 #'
 #' @return A orthonormal matrix in a specified size, \code{lin} by \code{col}.
 #'
-#' @author Roberto Raittz, et. al.
+#' @author Danrley R. Fernandes.
 #'
 #' @seealso \code{\link[rSWeeP]{SWeeP}}, \code{\link[pracma]{orth}}
 #' @examples

@@ -9,20 +9,6 @@ author:
    - Federal University of Paraná, Department of Biochemistry and Molecular Biology, Curitiba, Paraná, Brazil.
 - name: Mariane Gonçalves Kulik 
   affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
--  name: Bruno Thiago de Lima Nichio
-   affiliation: 
-   - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
-   - Federal University of Paraná, Department of Biochemistry and Molecular Biology, Curitiba, Paraná, Brazil.
--  name: Jeroniza Nunes Marchaukoski
-   affiliation: 
-   - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
--  name: Dieval Guizelini
-   affiliation: 
-   - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
--  name: Fabio de Oliveira Pedrosa
-   affiliation: 
-   - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
-   - Federal University of Paraná, Department of Biochemistry and Molecular Biology, Curitiba, Paraná, Brazil.  
 - name: Roberto Raittz
   affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
@@ -68,4 +54,4 @@ sessionInfo()
 ```
 
 # References
-- Pierri,C. R. *et al*. **SWeeP: Representing large biological sequences data sets in compact vectors**. (2019). 
+- Pierri,C. R. *et al*. **SWeeP: Representing large biological sequences data sets in compact vectors**. Scientific Reports, accepted in December 2019.doi: 10.1038/s41598-019-55627-4. 

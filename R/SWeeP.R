@@ -16,10 +16,11 @@
 #' in \code{orthBase} matrix.
 #' @return A matrix resulted by the projection of the sequences in \code{file}
 #' in the \code{orthBase} matrix
-#' @author Roberto Raittz, et. al.
+#' @author Danrley R. Fernandes.
 #' @seealso \code{\link[rSWeeP]{orthbase}}
 #' @references Pierri,C. R. et al. SWeeP: Representing large biological
-#' sequences data sets in compact vectors. (2019).
+#' sequences data sets in compact vectors. Scientific Reports, accepted in
+#' December 2019.doi: 10.1038/s41598-019-55627-4.
 #' @examples
 #' baseMatrix <- orthbase(160000,10)
 #' data(datastring)
