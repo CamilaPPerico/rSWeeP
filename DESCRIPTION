@@ -1,6 +1,6 @@
 Package: rSWeeP
 Title: Functions to Make Vectorial Comparations on Amino Acid Sequence
-Version: 0.99.0
+Version: 0.99.1
 Authors@R: 
     person(given = "Roberto",
            family = "Raittz",
