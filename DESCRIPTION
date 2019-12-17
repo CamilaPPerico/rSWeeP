@@ -14,7 +14,7 @@ Authors@R:
            email = "DanrleyRF@gmail.com")
 Description: The SVect method was developed to favor the comparison between complete genomic sequences and to assist in phylogenetic analyzes. This method is based on the concept of sparse words, which are used to scan biological sequences and turn them into vectors, favoring the manipulation of the data.
 biocViews: Software,StatisticalMethod,SupportVectorMachine,Technology,Sequencing,Genetics 
-Depends: R (>= 3.6)
+Depends: R (>= 4.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
