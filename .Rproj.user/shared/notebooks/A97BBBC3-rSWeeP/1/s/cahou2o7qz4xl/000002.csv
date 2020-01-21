@@ -1,0 +1,4 @@
+"0","return <- sWeeP(""exdna.fas"",baseMatrix)
+"
+"2","Error in fas2mat(xfas) : could not find function ""fas2mat""
+"

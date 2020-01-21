@@ -1,0 +1,7 @@
+"0","return <- sWeeP(""exdna.fas"",baseMatrix)
+"
+"2","first element used of 'length.out' argument"
+"2","NAs introduced by coercion"
+"2","Error in seq_len(xfas) : 
+  argument must be coercible to non-negative integer
+"
