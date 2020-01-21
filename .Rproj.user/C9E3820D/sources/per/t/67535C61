@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1579608686374.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3671827580",
+    "id" : "67535C61",
+    "lastKnownWriteTime" : 1579608742,
+    "last_content_update" : 1579608742597,
+    "path" : "~/GitHub/rSWeeP/vignettes/rSWeeP.Rmd",
+    "project_path" : "vignettes/rSWeeP.Rmd",
+    "properties" : {
+        "cursorPosition" : "1,14",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

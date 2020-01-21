@@ -20,7 +20,7 @@ Changes in version 0.99.4 (2020-01-21)
 + Instead of reading the R object datastring and writing it as a FASTA file, a FASTA file has been included directly in inst/extdata/
 + A bigger FASTA has been used in the "Quick Start" section
 + All non-R package source files have been removed
-
-Changes in version 0.99.4 (2020-01-21)
-
+Changes in version 0.99.5 (2020-01-21)
 + An even bigger FASTA has been used in the "Quick Start" section
+Changes in version 0.99.6 (2020-01-21)
++ Error removed
