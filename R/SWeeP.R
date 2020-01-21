@@ -18,7 +18,7 @@
 #' @return A matrix resulted by the projection of the sequences in \code{xfas}
 #' in the \code{baseMatrix} matrix
 #' @author Danrley R. Fernandes.
-#' @seealso \code{\link[rSWeeP]{orthBase}}
+#' @seealso \code{\link[rSWeeP:orthBase]{orthBase}}
 #' @references Pierri,C. R. et al. SWeeP: Representing large biological
 #' sequences data sets in compact vectors. Scientific Reports, accepted in
 #' December 2019.doi: 10.1038/s41598-019-55627-4.

@@ -52,7 +52,7 @@ sequences data sets in compact vectors. Scientific Reports, accepted in
 December 2019.doi: 10.1038/s41598-019-55627-4.
 }
 \seealso{
-\code{\link[rSWeeP]{orthBase}}
+\code{\link[rSWeeP:orthBase]{orthBase}}
 }
 \author{
 Danrley R. Fernandes.
