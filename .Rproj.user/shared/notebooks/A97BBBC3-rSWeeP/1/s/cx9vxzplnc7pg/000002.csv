@@ -1,4 +1,0 @@
-"0","baseMatrix <- orthBase(160000,10)
-"
-"2","Error in orthBase(160000, 10) : could not find function ""orthBase""
-"
