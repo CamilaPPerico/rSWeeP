@@ -53,22 +53,22 @@ setMethod("sWeeP", "AAStringSet", function(xfas, baseMatrix) {
     blocksToConvert <- length(xfas)/barra
     block <- round(length(xfas)/round(length(xfas)/blocksToConvert))
     ##create the matrix who will contain the projection
-    Bigprojected <- matrix(2, nrow = length(xfas), ncol = dim(baseMatrix)[1])
+    Bigprojected <- matrix(0,0,600)
       ##position defines the start of projection a at position 1
      position <- 1
       ##runs the projection thru all the matrix
-    for (i in seq_len(length(xfas)/block)) {
+    for (i in  1:barra) {
       message("running ", i, " of ", barra)
       ##verifi if the next matrix area isn't outside limits
       if (position + block < length(xfas)) {
         projected <- fas2mat(xfas[position:(position + block)]) %*% baseMatrix
-        Bigprojected[position:(position + block), ] <- projected
+        Bigprojected<-rbind(Bigprojected,projected)
         position <- position + block + 1
       }
       ##if the next matrix area is outside limits performs the projection only until end of the matrix
       else {
         projected <- fas2mat(xfas[position:length(xfas)]) %*% baseMatrix
-        Bigprojected[position:length(xfas), ] <- projected
+        Bigprojected<-rbind(Bigprojected,projected)
       }
       projected <- Bigprojected
     }
