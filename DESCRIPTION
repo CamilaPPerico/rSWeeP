@@ -1,6 +1,6 @@
 Package: rSWeeP
 Title: Functions to creation of low dimensional comparative matrices of Amino Acid Sequence occurrences 
-Version: 3.13.2
+Version: 1.3.2
 Authors@R: 
     person(given = "Roberto",
            family = "Raittz",
