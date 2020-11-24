@@ -53,7 +53,7 @@ setMethod("sWeeP", "AAStringSet", function(xfas, baseMatrix) {
     blocksToConvert <- length(xfas)/barra
     block <- round(length(xfas)/round(length(xfas)/blocksToConvert))
     ##create the matrix who will contain the projection
-    Bigprojected <- matrix(0,0,600)
+    Bigprojected <- matrix(0,0,dim(baseMatrix)[2])
       ##position defines the start of projection a at position 1
      position <- 1
       ##runs the projection thru all the matrix
