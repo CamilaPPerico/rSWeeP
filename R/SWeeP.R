@@ -46,6 +46,7 @@ setMethod("sWeeP", "character", function(xfas, baseMatrix) {
 setMethod("sWeeP", "AAStringSet", function(xfas, baseMatrix) {
   ##validating user input.
   stopifnot(methods::is(baseMatrix, "matrix"))
+  print('starting')
   ##if the data sequence has more than than 2000 specimens it's divide to process in pieces of 2000 at time
   if (length(xfas) > 2001) {
     ##define the number of fragmentation needed
