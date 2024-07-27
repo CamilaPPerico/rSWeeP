@@ -1,31 +1,50 @@
 Package: rSWeeP
-Title: Functions to creation of low dimensional comparative matrices of Amino Acid Sequence occurrences 
-Version: 1.17.0
-Authors@R: 
-    person(given = "Roberto",
-           family = "Raittz",
+Type: Package
+Title: Spaced Words Projection (SWeeP) 
+Version: 2.9
+Date: 2024-04-28
+Authors@R: c(
+    person(given = "Camila",
+           family = "Pereira Perico",
+           role = c("com", "cre", "aut", "cph"),
+           email = "camilapp94@gmail.com",
+           comment = c(ORCID = "https://orcid.org/0000-0003-0186-4022")),
+    person(given = "Danrley",
+            family = "Rafael Fernandes",
            role = "aut",
-           email = "raittz@ufpr.br")
-	person(given = "Mariane",
-           family = "G. Kulik",
-           role = "aut")
-    person(given = "Danrley R. Fernandes",
-           role = c("com", "cre","aut"),
-           email = "DanrleyRF@gmail.com")
-Description: The SWeeP method was developed to favor the analizes between amino acids sequences and to assist alignment free phylogenetic studies. This method is based on the concept of sparse words, which is applied in the scan of biological sequences and its the conversion in a  matrix of ocurrences.  Aiming the generation of low dimensional matrices of Amino Acid Sequence occurrences.
-biocViews: Software,StatisticalMethod,SupportVectorMachine,Technology,Sequencing,Genetics, Alignment 
-Depends: R (>= 4.0)
-License: GPL-3
+           email = "DanrleyRF@gmail.com"),
+    person(given = "Mariane",
+           family = "Gonçalves Kulik",
+           role = "aut",
+            comment = c(ORCID = "https://orcid.org/0009-0000-5432-3524") ),
+    person(given = "Roberto",
+           family = "Tadeu Raittz",
+           role = c("aut", "cph"),
+           email = "raittz@ufpr.br",
+            comment = c(ORCID = "https://orcid.org/0000-0002-5271-991X") )
+            )
+Maintainer: Camila P Perico <camilapp94@gmail.com>
+Description: "Spaced Words Projection (SWeeP)" is a method for representing biological sequences using vectors 
+        preserving inter-sequence comparability.
+Depends: 
+        foreach,
+        doParallel,
+        parallel,
+        Biostrings,
+        methods
+Imports:
+        tools, 
+        stringi
+Suggests: 
+        Rtsne,
+        ape,
+        Seurat,
+        knitr,
+        rmarkdown,
+        tictoc,
+        testthat (>= 3.0.0)
 Encoding: UTF-8
-LazyData: true
-RoxygenNote: 7.0.2
-Imports: 
-    pracma,
-    stats
-Suggests:
-    Biostrings,
-    methods, 
-    knitr,
-    rmarkdown,
-    BiocStyle
+RoxygenNote: 7.3.2
 VignetteBuilder: knitr
+Config/testthat/edition: 3
+License: GPL (>= 2)
