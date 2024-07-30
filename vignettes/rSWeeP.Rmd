@@ -1,5 +1,5 @@
 ---
-title: "rSWeeP: Spaced Words Projection (SWeeP) -- Alignment-free method for vectorising biological sequences"
+title: "rSWeeP: Alignment-free method for vectorising biological sequences"
 shorttitle: "rSWeeP"
 author:
 -  name: Camila Pereira Perico
@@ -20,7 +20,7 @@ output:
   BiocStyle::html_document
 package: rSWeeP
 abstract: |
- The rSWeeP package is an R implementation of the SWeeP method. The main function of this package is to provide a vector representation of biological sequences (nucleotides or amino acids), and thus favor alignment-free phylogenetic studies. Each sequence provided is represented by a compact numerical vector which is easier to analyze. The method is based on k-mers counting and random projection of high-dimensional vectors into low-dimensional vectors. In addition, the package allows general dimensionality reduction of RNAseq data and matrices. 
+ The rSWeeP package is an R implementation of the SWeeP method. The main function of this package is to provide a vector representation of biological sequences (nucleotides or amino acids), and thus favor alignment-free phylogenetic studies. Each sequence provided is represented by a compact numerical vector which is easier to analyze. The method is based on k-mers counting and random projection of high-dimensional vectors into low-dimensional vectors. In addition, the package allows general dimensionality reduction of RNAseq data and generic matrices. 
 vignette: >
   %\VignetteIndexEntry{rSWeeP}
   %\VignetteEngine{knitr::rmarkdown}
@@ -54,14 +54,6 @@ The SWeeP and SWeePlite functions are responsible for vectorizing the sequences 
 
 The page <https://aibialab.github.io/rSWeeP> provides basic tutorials on using and parameterizing the rSWeeP package. Below you can find a quickstart of the package.
 
-
-The package can be installed via Bioconductor, as shown below:
-```{r}
-if (!require("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("rSWeeP")
-```
 
 Consider a set of 13 mitochondrial proteomes (translated CDSs) deposited in the folder at the address `path` in FASTA format. These sequences can be vectorized as below:
 ```{r}

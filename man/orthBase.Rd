@@ -2,16 +2,16 @@
 % Please edit documentation in R/orthBase.R
 \name{orthBase}
 \alias{orthBase}
-\title{Generate a orthonormal matrix (\code{lin} , \code{col})}
+\title{Generate a orthonormal matrix}
 \usage{
 orthBase(lin = NULL, col, seqtype = "AA", mask = c(2, 1, 2), seed = NULL)
 }
 \arguments{
-\item{lin}{Number of rows in the desired matrix}
+\item{lin}{Number of rows in the desired matrix.}
 
-\item{col}{Number of columns in the desired matrix}
+\item{col}{Number of columns in the desired matrix, which means projection size (psz)}
 
-\item{seqtype}{type of data: AA for amino acid, NT for nucleotide. Parameter required if a mask is provided. The default is AA}
+\item{seqtype}{type of data: AA for amino acid, NT for nucleotide. Parameter required if a mask is provided. The default is ´AA´}
 
 \item{mask}{reading mask. Use this option or `lin' option. Default c(2,1,2).}
 
@@ -30,19 +30,18 @@ An orthonormal matrix (basis) whose dimensions correspond to the given mask
         }
 }
 \description{
-Generate a orthonormal matrix in a specified
-size, \code{lin} by \code{col}.
+Generate a orthonormal matrix for specified parameters for ´SWeeP´ function
 }
 \examples{
 
 # define the mask - determines the length of input vector (20^4 = 160000)
-mask <- c(1,1,0,1,1) 
+mask <- c(2,1,2) 
 
 # define the length of output vector
-col <- 600
+psz <- 600
 
 # get the basis matrix to projection
-Mybase <- orthBase(mask = mask, col = col,seqtype='AA')
+Mybase <- orthBase(mask = mask, col = psz,seqtype='AA')
 
 }
 \seealso{

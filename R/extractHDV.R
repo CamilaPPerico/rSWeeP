@@ -1,15 +1,15 @@
 #' @title Function for obtaining the HDV (High Dimensional Vector) matrix
 #' @name extractHDV
-#' @description Function for obtaining the HDV matrix without projecting it. 
-#' The HDV corresponds to the high-dimensional matrix that represents the biological sequences
-#' in a vectorial and structured way.
+#' @description Function for obtaining the HDV matrix without projecting it low dimensional vector (LDV). 
+#' Each line of the HDV corresponds to the counting of k-mers of a biological sequence, 
+#' organized in a structured way.
 #' 
 #' @param input There are two input formats available:
 #'              (a) `BStringSet' (variants: `AAStringSet', `RNAStringSet', `DNAStringSet'). Biological sequence format loaded in memory;
 #'              (b) `character'. String containing a path to a folder with FASTA files.
 #' @param mask		readging mask. Default for amino acids is `c(2,1,2)` and for nucleotides c(5,5,5)#' 
 #' @param seqtype   type of data: AA for amino acid, NT for nucleotide. The default is `AA`
-#' @param bin       binary mode (TRUE), or counting mode (FALSE) for HDV construction. Default is TRUE
+#' @param bin       binary mode (TRUE), or counting mode (FALSE) for HDV construction. Default is FALSE
 #' @param extension         extension of files desired to concatenate (Optional).   Available only for input type path to folder with FASTA files.
 #' @param concatenate   defines whether to treat each sequence individually or to concatenate them into a single sequence. 
 #'                  Available only for inputs in biological sequence format. The default is FALSE.
@@ -20,13 +20,18 @@
 #' `extractHDV' returns a `list` containing:
 #' \itemize{
 #'   \item HDV: a `matrix' containing the High Dimensional Vectors of the given FASTAS
-#'   \item headers: a `character' containing the list of samples 
-#'   \item mask: a `integer' containing the mask used
-#'   \item SequenceType: a `character' containing the type of the sequence (amino acid: AA, ou nucleotide: NT)
-#'   \item extension: a `character' containing the list of extensions considered
-#'   \item bin: a `character' containing if binary or counting
-#'   \item saturation: a `vector' containing the filled (non-zero) percentage of the HDV for each sample
-#'   \item timeElapsed: a `double' containing the elapsed time in seconds
+#'   \item info: aditional information of the process. This object is subdivided in: 
+#'   \itemize{
+#'       \item headers: a `character' containing the list of samples 
+#'       \item mask: a `integer' containing the mask used
+#'       \item SequenceType: a `character' containing the type of the sequence (amino acid: AA, ou nucleotide: NT)
+#'       \item extension: a `character' containing the list of extensions considered
+#'       \item concatenate : a boolean corresponding to the concatenation of sequences
+#'       \item bin: a `character' containing if binary or counting
+#'       \item version : a character corresponding to the version of the package
+#'       \item saturation: a `vector' containing the filled (non-zero) percentage of the HDV for each sample
+#'       \item timeElapsed: a `double' containing the elapsed time in seconds
+#'    } 
 #' } 
 #' 
 #' @examples

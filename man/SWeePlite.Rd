@@ -152,20 +152,22 @@ SWeePlite(input, psz, bin = FALSE, ncores = NULL, ...)
 
 \item{psz}{projection size. Default 1369}
 
-\item{bin}{binary mode (TRUE), or counting mode (FALSE) for HDV construction. Default is TRUE}
+\item{bin}{binary mode (TRUE), or counting mode (FALSE) for HDV construction. Default is FALSE.}
 
-\item{ncores}{Number of CPU cores used for parallel processing. Default is N-1, where N is the maximum.}
+\item{ncores}{Number of CPU cores used for parallel processing. Default is 2.}
 
 \item{...}{other arguments of the function itself}
 
-\item{norm}{normalization option: 'none', 'log', 'logNeg'.  Default is 'none'}
+\item{norm}{normalization of HDV. This must be one of 'none', 'log' or 'logNeg'. 'none' is no normalization, 
+'log' is simple logarithm, ´logNeg´ option is indicated for analyzing genes and short sequences.
+Default is ´none´.}
 
 \item{concatenate}{defines whether to treat each sequence individually or to concatenate them into a single sequence
 Available only for inputs in biological sequence format. The default is FALSE.}
 
 \item{mask}{reading mask. Available only for inputs in biological sequence format or path for FASTA files. Default c(2,1,2)}
 
-\item{seqtype}{type of data: AA for amino acid, NT for nucleotide. Available only for inputs in biological sequence format or path for FASTA files. The default is AA}
+\item{seqtype}{type of data: ´AA´ for amino acid, ´NT´ for nucleotide. Available only for inputs in biological sequence format or path for FASTA files. The default is AA}
 
 \item{nk}{Step size of HDV for parallel loop. Default is 50000.}
 
@@ -176,14 +178,19 @@ Available only for inputs in biological sequence format. The default is FALSE.}
 \item{lowRAMmode}{lowRAMmode is suitable for reading large files individually, such as complete genomes, when the machine's memory is limited. 
 read one FASTA at a time, recommended for large files such as complete eukaryotic genomes or proteomes. The default is FALSE}
 
-\item{transpose}{If the rows correspond to the samples and the columns correspond to the genes (mtx pattern), use transpose=FALSE. If the columns correspond to the samples, use transpose=TRUE. Available only for inputs of the expression matrix or generic matrix type. The default setting is TRUE}
+\item{transpose}{If the rows correspond to the samples and the columns correspond to the genes (mtx pattern), 
+use transpose=FALSE. If the columns correspond to the samples, use transpose=TRUE. 
+Available only for inputs of the expression matrix or generic matrix type. 
+The default setting is FALSE}
 
-\item{RNAseqdata}{For RNAseq data. Apply the parameter `transpose=TRUE'. Default is FALSE.}
+\item{RNAseqdata}{For RNAseq data use 'TRUE' or apply the parameter `transpose=TRUE'. Default is FALSE.}
 }
 \value{
 `SWeePlite' returns a `list' containing the following components:
 \itemize{
   \item proj: a `numeric` matrix with `m` columns and one line per sequence, each row corresponding to a compact vector
+  \item info: aditional information of the process. This object is subdivided in: 
+  \itemize{
   \item ProjectionSize: a `integer` corresponding to `psz`
   \item bin: bin: a `boolean' containing if binary (TRUE) or counting (FALSE)
   \item mask: a `vector` containing the mask used
@@ -194,18 +201,22 @@ read one FASTA at a time, recommended for large files such as complete eukaryoti
   \item extension: a `character' containing the list of extensions considered
   \item timeElapsed: a `double' containing the elapsed time in seconds
   \item headers : list of headers for each analyzed sequence
+} 
 }
 }
 \description{
-A vectorial comparative method to biological sequences (amino acid and nucleotide) and expression matrices.
-The "Spaced Words Projection version lite" (SWeePlite) is a method for
-representing biological sequences using compact vectors. SWeePlite uses the
-spacedwords concept by scanning sequences and generating indices
-to create a higherdimensional matrix of occurrences that is later projected into a
-smaller randomly oriented orthonormal base (De Pierri, 2020). This way the resulting
-matrix  will conserve the comparational data but will have a selectable size.
-De Pierri, C. R., et al. (2020). SWeeP: representing large biological sequences datasets in compact vectors. 
-Scientific reports, 10(1):1–10.
+Spaced Words Projection version lite (SWeePlite) is an alignment-free method for the vector representation 
+of the biological sequences (amino acid and nucleotide). Analogous to the ´SWeeP´ function (De Pierri, 2020), 
+´SWeePlite´ has optimizations in its implementation that allow the use of larger read masks with low RAM 
+consumption. It also eliminates the need to supply the orthonormal matrix (it is generated internally).
+Each sequence provided is represented by a compact numerical vector which is easy to analyze. 
+The method is based on k-mers counting and random projection. Details of the methodology can be found 
+in the reference (De Pierri, 2020). The function allows general dimensionality reduction of RNAseq 
+data and generic matrices.
+}
+\details{
+The normalization option 'logNeg' applies a simple logarithm to the HDV matrix. 
+Its difference from 'log' is the conversion of zeros to -1 in HDV.
 }
 \examples{
 
@@ -217,7 +228,7 @@ mask = c(2,1,2)
 psz = 1369
 
 # get the vectors that represent the sequences
-ldv = SWeePlite(input=path,extension=c('.faa','.fas','.fasta'),
+LDV = SWeePlite(input=path,extension=c('.faa','.fas','.fasta'),
                 psz = psz,mask=mask,bin=FALSE,seqtype='AA',ncores=2)
 
 }

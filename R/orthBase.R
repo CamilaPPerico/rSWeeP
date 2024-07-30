@@ -1,13 +1,12 @@
-#' @title Generate a orthonormal matrix (\code{lin} , \code{col})
+#' @title Generate a orthonormal matrix 
 #' @name orthBase
 #'
-#' @description Generate a orthonormal matrix in a specified
-#' size, \code{lin} by \code{col}.
+#' @description Generate a orthonormal matrix for specified parameters for ´SWeeP´ function
 #'
-#' @param lin Number of rows in the desired matrix
-#' @param col Number of columns in the desired matrix
+#' @param lin Number of rows in the desired matrix. 
+#' @param col Number of columns in the desired matrix, which means projection size (psz)
 #' @param mask      reading mask. Use this option or `lin' option. Default c(2,1,2).
-#' @param seqtype   type of data: AA for amino acid, NT for nucleotide. Parameter required if a mask is provided. The default is AA
+#' @param seqtype   type of data: AA for amino acid, NT for nucleotide. Parameter required if a mask is provided. The default is ´AA´
 #' @param seed   provide, if necessary, a seed to generate the matrix. The default is 647474747
 #'
 #' @return An orthonormal matrix (basis) whose dimensions correspond to the given mask
@@ -27,13 +26,13 @@
 #' @examples
 #' 
 #' # define the mask - determines the length of input vector (20^4 = 160000)
-#' mask <- c(1,1,0,1,1) 
+#' mask <- c(2,1,2) 
 #' 
 #' # define the length of output vector
-#' col <- 600
+#' psz <- 600
 #' 
 #' # get the basis matrix to projection
-#' Mybase <- orthBase(mask = mask, col = col,seqtype='AA')
+#' Mybase <- orthBase(mask = mask, col = psz,seqtype='AA')
 #' 
 #' @import methods
 #' @export
@@ -43,7 +42,7 @@ orthBase <- function(lin=NULL, col,seqtype='AA',mask = c(2,1,2),seed=NULL) {
         mask = convertMask(mask)
     }
 
-    # COLOCAR PSEUDORANDOMICO - sempre a mesma!
+    # always the same matrix!
     if(is.null(seed)){
         seed = 647474747
         set.seed(seed) # fixed
