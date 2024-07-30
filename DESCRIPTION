@@ -1,7 +1,7 @@
 Package: rSWeeP
 Type: Package
 Title: Spaced Words Projection (SWeeP) 
-Version: 1.17.1
+Version: 1.16.1
 Date: 2024-04-28
 Authors@R: c(
     person(given = "Camila",
