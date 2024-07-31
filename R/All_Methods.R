@@ -306,7 +306,7 @@ In this case, use the 'transpose=TRUE' option.\n\n")
 
     end_time = proc.time()
     output$info$timeElapsed = (end_time - start_time)[[3]] 
-    output$info$version = 'SWeeP v2.8'
+    output$info$version = packageVersion('rSWeeP')
 
     rownames(output$proj) = rownames(input)
     return(output)
@@ -538,7 +538,7 @@ setGeneric(
     output$info$extension = NULL
     output$info$concatenate =  concatenate
     output$info$bin = ifelse(bin, 'binary (TRUE)', 'counting (FALSE)')
-    output$info$version = 'SWeePlite v2.8'
+    output$info$version = packageVersion('rSWeeP')
     output$info$norm =  norm
     
     end_time = proc.time()
@@ -643,7 +643,7 @@ setGeneric(
         output$info$SequenceType = seqtype
         output$info$extension = extension
         output$info$bin = ifelse(bin, 'binary (TRUE)', 'counting (FALSE)')
-        output$info$version = 'SWeePlite v2.8'
+        output$info$version = packageVersion('rSWeeP')
         output$info$norm =  norm
 
     } # end else
@@ -749,7 +749,7 @@ In this case, use the 'transpose=TRUE' option.\n\n")
     parallel::stopCluster(cl = sw.cluster)
     
     row.names(output$proj) = output$info$samples
-    output$info$version = 'SWeePlite v2.8'
+    output$info$version = packageVersion('rSWeeP')
     
     end_time = proc.time()
     output$info$timeElapsed = (end_time - start_time)[[3]] # as.double(end_time - start_time)
