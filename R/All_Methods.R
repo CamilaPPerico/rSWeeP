@@ -791,3 +791,330 @@ setMethod("SWeePlite", "matrix",       .SWeePliteGeneric)
 setMethod("SWeePlite", "dgCMatrix",    .SWeePliteGeneric) # serve tipo array? pois o formato não é reconhecido
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#' @title Generate a orthonormal matrix 
+#' @name orthBase
+#'
+#' @description Generate a orthonormal matrix for specified parameters for ´SWeeP´ function
+#'
+#' @param lin Number of rows in the desired matrix. 
+#' @param col Number of columns in the desired matrix, which means projection size (psz)
+#' @param mask      reading mask. Use this option or `lin' option. Default c(2,1,2).
+#' @param seqtype   type of data: AA for amino acid, NT for nucleotide. Parameter required if a mask is provided. The default is ´AA´
+#' @param seed   provide, if necessary, a seed to generate the matrix. The default is 647474747
+#'
+#' @return An orthonormal matrix (basis) whose dimensions correspond to the given mask
+#'         to be used and a desired projection size (length of the output vector). 
+#'         The basis must be supplied to the function \link{SWeeP} (see examples).
+#'
+#'         `orthBase' returns a `list` containing:
+#' \itemize{
+#'          \item mat: the orthonormal matrix (basis)
+#'          \item seed: the random seed (metadata to identify the matrix)
+#'          \item version: the rSWeeP version
+#'         }
+#'
+#' @author Camila P. Perico
+#'
+#' @seealso \code{\link{SWeeP}}
+#' @examples
+#' 
+#' # define the mask - determines the length of input vector (20^4 = 160000)
+#' mask <- c(2,1,2) 
+#' 
+#' # define the length of output vector
+#' psz <- 600
+#' 
+#' # get the basis matrix to projection
+#' Mybase <- orthBase(mask = mask, col = psz,seqtype='AA')
+#' 
+#' @import methods
+#' @export
+orthBase <- function(lin=NULL, col,seqtype='AA',mask = c(2,1,2),seed=NULL) {
+
+    if (max(mask)>1){
+        mask = convertMask(mask)
+    }
+
+    # always the same matrix!
+    if(is.null(seed)){
+        seed = 647474747
+        set.seed(seed) # fixed
+    } else{ 
+        set.seed(seed)
+    }
+
+    if( length(lin) == 0 ){    # if the user give the mask, not the number of lines
+
+        SW.checks('mask',mask)
+
+        if (seqtype=='AA'){
+            lin = 20^sum(mask)
+        } else if(seqtype=='NT'){
+            lin = 4^sum(mask)
+        }
+    }
+
+
+
+    idx = 1:lin
+    pslist = c(2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229)
+    nps = length(pslist)
+    Mproj =  matrix(stats::runif(nps * col), ncol=col)
+    xnorm = sqrt(lin/3)
+
+    mret = (matrix(rep(idx,nps),ncol=nps))%%(matrix(rep(pslist,length(idx)),ncol=nps,byrow=T))
+    dt = (1+(mret))%*%Mproj
+    bs = ((dt - floor(dt))-0.5)/0.5
+
+    output=NULL
+    output$mat = bs/xnorm
+    output$seed = seed
+    output$version = 'SWeeP v2.9'
+
+    return(output)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#' @title Function for obtaining the HDV (High Dimensional Vector) matrix
+#' @name extractHDV
+#' @description Function for obtaining the HDV matrix without projecting it low dimensional vector (LDV). 
+#' Each line of the HDV corresponds to the counting of k-mers of a biological sequence, 
+#' organized in a structured way.
+#' 
+#' @param input There are two input formats available:
+#'              (a) `BStringSet' (variants: `AAStringSet', `RNAStringSet', `DNAStringSet'). Biological sequence format loaded in memory;
+#'              (b) `character'. String containing a path to a folder with FASTA files.
+#' @param mask      readging mask. Default for amino acids is `c(2,1,2)` and for nucleotides c(5,5,5)#' 
+#' @param seqtype   type of data: AA for amino acid, NT for nucleotide. The default is `AA`
+#' @param bin       binary mode (TRUE), or counting mode (FALSE) for HDV construction. Default is FALSE
+#' @param extension         extension of files desired to concatenate (Optional).   Available only for input type path to folder with FASTA files.
+#' @param concatenate   defines whether to treat each sequence individually or to concatenate them into a single sequence. 
+#'                  Available only for inputs in biological sequence format. The default is FALSE.
+#' @param verbose   verbose mode. The default is TRUE
+#' @param ...       other arguments of the function itself
+#' 
+#' @return 
+#' `extractHDV' returns a `list` containing:
+#' \itemize{
+#'   \item HDV: a `matrix' containing the High Dimensional Vectors of the given FASTAS
+#'   \item info: aditional information of the process. This object is subdivided in: 
+#'   \itemize{
+#'       \item headers: a `character' containing the list of samples 
+#'       \item mask: a `integer' containing the mask used
+#'       \item SequenceType: a `character' containing the type of the sequence (amino acid: AA, ou nucleotide: NT)
+#'       \item extension: a `character' containing the list of extensions considered
+#'       \item concatenate : a boolean corresponding to the concatenation of sequences
+#'       \item bin: a `character' containing if binary or counting
+#'       \item version : a character corresponding to the version of the package
+#'       \item saturation: a `vector' containing the filled (non-zero) percentage of the HDV for each sample
+#'       \item timeElapsed: a `double' containing the elapsed time in seconds
+#'    } 
+#' } 
+#' 
+#' @examples
+#' 
+#' # get the path to the folder containing the FASTA files
+#' path = paste (system.file("examples/aaMitochondrial/",package = "rSWeeP"),'/', sep = '')
+#' 
+#' # define the parameters
+#' mask = c(2,1,2)
+#' 
+#' # get the vectors that represent the sequences in high dimension (without projection)
+#' HDV = extractHDV(input=path,mask=mask,seqtype='AA',bin=FALSE,extension=c('.faa','.fas','.fasta'))
+#' 
+#' 
+#' @rdname extractHDV
+#' @import foreach doParallel Biostrings methods
+#' @export
+setGeneric(
+  "extractHDV",
+  function(input, mask=NULL,seqtype='AA',...) standardGeneric("extractHDV"),
+    signature = "input"
+)
+# setMethod("extractHDV", "character", function(path, extension,mask,seqtype,bin,verbose) {
+
+.extractHDVfromFolder <-function(input, mask=NULL,seqtype='AA',bin=FALSE,extension='',verbose=TRUE){
+
+    start_time = proc.time()
+
+    mask = Defmask(mask,seqtype)
+
+    ## Create the lists of files and names
+    fastalist = list.files(input,pattern=extension,full.names=TRUE,recursive=TRUE)
+    namesfasta = list.files(input,pattern=extension,full.names=FALSE,recursive=TRUE)
+    # remove extension from filename
+    namesfasta = tools::file_path_sans_ext(namesfasta)   
+    
+    
+    ## input checks ---------------------- vv
+    SW.checks('extension',extension)
+    SW.checks('mask',mask)
+    SW.checks('seqtype',seqtype)
+    SW.checks('bin',bin)
+    SW.checks('fastalist',fastalist)
+    ## input checks ---------------------- ^^
+
+    ## some parameters ---------------------------------
+    # spacer between fastas of same individual
+    spacer = paste(rep("*",length(mask)),collapse='')
+    # define maximum length of HDV
+    if (seqtype=='AA'){
+        lenmax = 20^sum(mask)
+    } else if(seqtype=='NT'){
+        lenmax = 4^sum(mask)
+    }
+
+    mask = as.integer(mask)
+
+    
+    # number of sequences
+    N = length(fastalist)
+    N_ = as.character(N)
+
+
+    # empty output  matrix
+    output = createSWobjHDV(N,lenmax,namesfasta,mask,bin,seqtype,extension,FALSE)
+    
+
+    # for each fasta file, sweep
+    for (k in 1:N){
+        if(verbose){
+            cat(paste('starting sequence ',as.character(k),'of', N_))
+        }
+        actualfasta = concatenaEach(fastalist[k],spacer)
+        seq = seq2num(actualfasta,seqtype)
+
+        output$HDV[k,] = readmaskVEC(seq, mask,seqtype,bin,'none',lenmax)
+
+        # atual sequence
+        if(verbose){
+            cat(paste(' - complete\n')) 
+        }
+    }
+  
+    
+
+    if(N>1){    output$info$saturation = rowSums(output$HDV!=0)/lenmax    } 
+    else {      output$info$saturation = sum(output$HDV!=0)/lenmax    }
+
+    end_time = proc.time()
+    output$info$timeElapsed = (end_time - start_time)[[3]] 
+    return(output)
+
+}
+
+
+
+ .extractHDVinRAM<-function(input, mask=NULL,seqtype=NULL,bin=FALSE,concatenate=FALSE, verbose=TRUE){
+    start_time = proc.time()
+
+
+    if (inherits(input,"AAStringSet"))                                      { seqtype='AA' }
+    else if (inherits(input,"RNAStringSet") | inherits(input,"DNAStringSet")) { seqtype='NT' }
+    else if (is.null(seqtype)){ 
+        stop("Please provide the type of data. Use seqtype='AA' for amino acids and seqtype='NT' for nucleotides. ")
+    }
+ 
+    mask = Defmask(mask,seqtype)
+
+
+    ## input checks ---------------------- vv
+    SW.checks('mask',mask)
+    SW.checks('seqtype',seqtype)
+    SW.checks('bin',bin)
+    SW.checks('concatenate',concatenate)
+    ## input checks ---------------------- ^^
+
+
+    if(concatenate){ # concatenate with spacer
+        spacer = paste(rep("*",length(mask)),collapse='')
+        input = stringi::stri_join_list(list(paste(input)),sep = spacer,collapse = NULL) # require stringi
+    }
+
+     # PARAMETERS --------------
+    N = length(input) # number of sequences
+    N_ = as.character(N)
+    lenmax <- if (seqtype == 'AA') 20^sum(mask) else if (seqtype == 'NT') 4^sum(mask)
+    mask = as.integer(mask)
+    
+
+    # empty output  matrix
+    output = createSWobjHDV(N,lenmax,names(input),mask,bin,seqtype,'',concatenate)
+    
+    for (k in 1:N){
+        if(verbose){ cat(paste('starting sequence ',as.character(k),'of', N_)) }
+
+        seq = seq2num(input[k],seqtype)
+
+        output$HDV[k,] = readmaskVEC(seq, mask,seqtype,bin,'none',lenmax)
+
+        # atual sequence
+        if(verbose){ cat(paste(' - complete\n')) }
+
+    } # end for k in N
+
+  
+    if(N>1){    output$saturation = rowSums(output$HDV!=0)/lenmax    } 
+    else {      output$saturation = sum(output$HDV!=0)/lenmax    }
+
+    end_time = proc.time()
+    output$timeElapsed = (end_time - start_time)[[3]] 
+
+    return(output)
+
+}
+
+
+
+#' @rdname extractHDV
+setMethod("extractHDV", "AAStringSet",  .extractHDVinRAM) 
+#' @rdname extractHDV
+setMethod("extractHDV", "DNAStringSet", .extractHDVinRAM) 
+#' @rdname extractHDV
+setMethod("extractHDV", "RNAStringSet", .extractHDVinRAM) 
+#' @rdname extractHDV
+setMethod("extractHDV", "BStringSet",   .extractHDVinRAM) 
+#' @rdname extractHDV
+setMethod("extractHDV", "BString",      .extractHDVinRAM) 
+#' @rdname extractHDV
+setMethod("extractHDV", "character",    .extractHDVfromFolder) 
