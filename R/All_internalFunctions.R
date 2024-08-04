@@ -22,7 +22,7 @@ createSWobj <- function(output,psz,namesfasta,mask,bin,seqtype,extension,concate
     output$info$extension = extension
     output$info$bin = ifelse(bin, 'binary (TRUE)', 'counting (FALSE)')
     output$info$concatenate = concatenate
-    output$info$version = packageVersion('rSWeeP')
+    output$info$version = utils::packageVersion('rSWeeP')
     output$info$norm =  norm
     output$info$timeElapsed = timeElapsed
 
@@ -43,7 +43,7 @@ createSWobjHDV <- function(N,lenmax,namesfasta,mask,bin,seqtype,extension,concat
     output$info$extension = extension
     output$info$concatenate = concatenate
     output$info$bin = ifelse(bin, 'binary (TRUE)', 'counting (FALSE)')
-    output$info$version = packageVersion('rSWeeP')
+    output$info$version = utils::packageVersion('rSWeeP')
     return(output)
 }
 

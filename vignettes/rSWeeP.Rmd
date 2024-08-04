@@ -80,7 +80,6 @@ sw$info
 We can obtain the phylogenetic relationship between the vectorized organisms using the Neighbour Joining (NJ) method.
 ```{r plot Tree1, fig.height=10,fig.width=10}
 library(ape)
-library(ggtree)
 
 # get the distance matrix
 mdist = dist(sw$proj,method='euclidean')
@@ -91,8 +90,7 @@ tr = nj(mdist)
 tr = root(tr,outgroup='14_Rhazya_stricta')
 
 # plot
-p<- ggtree(tr)+ geom_tiplab()
-p
+plot(tr)
 ```
 
 To visualize the vectorized data graphically, we provide the metadata with the classes at the family taxonomic level.
@@ -106,7 +104,7 @@ We obtain the PCA and visualize the first components.
 pca_output <- prcomp (sw$proj , scale = FALSE)
 par(mfrow=c(1,2))
 plot(pca_output$x[,1] , pca_output$x [,2] , xlab = 'PC-1' , ylab = 'PC-2' , pch =20 , col = mt$id)
-legend("bottomright" , unique(mt$family) , col = as.character(c(1:length(unique(mt$family)))) , pch =20)
+legend("bottomright",unique(mt$family),col=as.character(c(1:length(unique(mt$family)))),pch=20)
 plot(pca_output$x[,3] , pca_output$x [,4] , xlab = 'PC-3' , ylab = 'PC-4' , pch =20 , col = mt$id)
 ```
 

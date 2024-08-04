@@ -84,7 +84,7 @@
 #' De Pierri, C. R., et al. (2020). SWeeP: representing large biological sequences datasets in compact vectors. 
 #' Scientific reports, 10(1):1–10.
 #' 
-#' @import foreach doParallel Biostrings methods parallel
+#' @import foreach doParallel Biostrings methods parallel utils
 #' @export
 setGeneric(
   "SWeeP",
@@ -206,7 +206,8 @@ setGeneric(
     if (!lowRAMmode) {
         allFastas = concatenaAll(fastalist,spacer,N)
         #  format AAStrings, call .sweepFASTAinRAM function
-        output = SWeeP(allFastas,orthbase,mask=mask,seqtype=seqtype,ncores=ncores,concatenate=FALSE,norm=norm,bin=bin,verbose=verbose)
+        output = SWeeP(allFastas,orthbase,mask=mask,seqtype=seqtype,ncores=ncores,concatenate=FALSE,
+                        norm=norm,bin=bin,verbose=verbose)
 
     } else {
         
@@ -306,7 +307,7 @@ In this case, use the 'transpose=TRUE' option.\n\n")
 
     end_time = proc.time()
     output$info$timeElapsed = (end_time - start_time)[[3]] 
-    output$info$version = packageVersion('rSWeeP')
+    output$info$version = utils::packageVersion('rSWeeP')
 
     rownames(output$proj) = rownames(input)
     return(output)
@@ -455,7 +456,7 @@ setMethod("SWeeP", "dgCMatrix",    .sweepGeneric)
 #' in compact vectors. Scientific reports, 10(1):1–10.
 #' 
 #' @rdname SWeePlite
-#' @import foreach doParallel Biostrings methods parallel
+#' @import foreach doParallel Biostrings methods parallel  utils
 #' @export
 setGeneric(
   "SWeePlite",
@@ -538,7 +539,7 @@ setGeneric(
     output$info$extension = NULL
     output$info$concatenate =  concatenate
     output$info$bin = ifelse(bin, 'binary (TRUE)', 'counting (FALSE)')
-    output$info$version = packageVersion('rSWeeP')
+    output$info$version = utils::packageVersion('rSWeeP')
     output$info$norm =  norm
     
     end_time = proc.time()
@@ -643,7 +644,7 @@ setGeneric(
         output$info$SequenceType = seqtype
         output$info$extension = extension
         output$info$bin = ifelse(bin, 'binary (TRUE)', 'counting (FALSE)')
-        output$info$version = packageVersion('rSWeeP')
+        output$info$version = utils::packageVersion('rSWeeP')
         output$info$norm =  norm
 
     } # end else
@@ -749,7 +750,7 @@ In this case, use the 'transpose=TRUE' option.\n\n")
     parallel::stopCluster(cl = sw.cluster)
     
     row.names(output$proj) = output$info$samples
-    output$info$version = packageVersion('rSWeeP')
+    output$info$version = utils::packageVersion('rSWeeP')
     
     end_time = proc.time()
     output$info$timeElapsed = (end_time - start_time)[[3]] # as.double(end_time - start_time)
@@ -852,7 +853,7 @@ setMethod("SWeePlite", "dgCMatrix",    .SWeePliteGeneric) # serve tipo array? po
 #' # get the basis matrix to projection
 #' Mybase <- orthBase(mask = mask, col = psz,seqtype='AA')
 #' 
-#' @import methods
+#' @import methods  utils
 #' @export
 orthBase <- function(lin=NULL, col,seqtype='AA',mask = c(2,1,2),seed=NULL) {
 
@@ -964,7 +965,7 @@ orthBase <- function(lin=NULL, col,seqtype='AA',mask = c(2,1,2),seed=NULL) {
 #' 
 #' 
 #' @rdname extractHDV
-#' @import foreach doParallel Biostrings methods
+#' @import foreach doParallel Biostrings methods  utils
 #' @export
 setGeneric(
   "extractHDV",
