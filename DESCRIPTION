@@ -31,10 +31,12 @@ Depends:
         doParallel,
         parallel,
         Biostrings,
-        methods
+        methods,
+	utils
 Imports:
         tools, 
-        stringi
+        stringi,
+	pracma
 Suggests: 
         Rtsne,
         ape,
@@ -42,6 +44,7 @@ Suggests:
         knitr,
         rmarkdown,
         tictoc,
+	BiocStyle,
         testthat (>= 3.0.0)
 Encoding: UTF-8
 RoxygenNote: 7.3.2
