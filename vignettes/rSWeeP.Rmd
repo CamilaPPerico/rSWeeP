@@ -12,7 +12,10 @@ author:
    - Federal University of Paraná, Department of Biochemistry and Molecular Biology, Curitiba, Paraná, Brazil.
 - name: Mariane Gonçalves Kulik 
   affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
-- name: Roberto Raittz
+- name: Ricardo Assunção Vialle
+  affiliation: 
+   - Rush Alzheimer's Disease Center, Chicago, IL, US. 
+- name: Roberto Tadeu Raittz
   affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
    - Federal University of Paraná, Department of Biochemistry and Molecular Biology, Curitiba, Paraná, Brazil.
@@ -38,7 +41,7 @@ The `SWeePlite` function is optimized for processing with larger masks (larger k
 These functions are suitable for making high quality comparisons between sequences allowing analyzes that are not possible due to the computational limitation of the traditional techniques. 
 The  MATLAB version of the method is available at [sWeeP](https://sourceforge.net/projects/spacedwordsprojection/) (PIERRI, 2019). This tool has it's main speed gain in  constanci  processing time. The response time grows linear to the number of inputs, while in other methods it grow is exponencial.
 
-Tutorials and more informarion are available at <https://aibialab.github.io/rSWeeP>.
+Tutorials and more information are available at <https://aibialab.github.io/rSWeeP>.
 
 ## Functions
 The package has four functions:

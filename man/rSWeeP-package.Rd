@@ -45,8 +45,8 @@ Mariane G. Kulik [aut]
     pathmetadata <- system.file(package = "rSWeeP" , "examples" , "metadata_mitochondrial.csv")
     mt = read.csv(pathmetadata,header=TRUE)
     pca_output <- prcomp (sw$proj , scale = FALSE)
-    plot(pca_output$x[,1] , pca_output$x [,2] , xlab = 'PC-1' , ylab = 'PC-2' , pch =20 , col = mt$id)
-    legend("bottomright" , unique(mt$family) , col = as.character(c(1:length(unique(mt$family)))) , pch =20)
+    plot(pca_output$x[,1],pca_output$x[,2] , xlab = 'PC-1' , ylab = 'PC-2', pch=20, col=mt$id)
+    legend("bottomright",unique(mt$family),col=as.character(c(1:length(unique(mt$family)))),pch=20)
   
   }
 }
