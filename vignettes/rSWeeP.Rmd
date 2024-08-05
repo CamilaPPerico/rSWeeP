@@ -6,6 +6,8 @@ author:
    affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
 - name: Danrley Rafael Fernandes
   affiliation: Federal University of Paraná, Graduate in Biological Sciences, Curitiba, Paraná, Brazil.
+- names: Júlia Formighieri Varaschin
+   affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
 -  name: Camilla Reginatto De Pierri
    affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
@@ -13,8 +15,7 @@ author:
 - name: Mariane Gonçalves Kulik 
   affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
 - name: Ricardo Assunção Vialle
-  affiliation: 
-   - Rush Alzheimer's Disease Center, Chicago, IL, US. 
+  affiliation: Rush Alzheimer's Disease Center, Chicago, IL, US. 
 - name: Roberto Tadeu Raittz
   affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
