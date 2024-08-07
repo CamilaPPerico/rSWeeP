@@ -84,7 +84,9 @@
 #' De Pierri, C. R., et al. (2020). SWeeP: representing large biological sequences datasets in compact vectors. 
 #' Scientific reports, 10(1):1–10.
 #' 
-#' @import foreach doParallel Biostrings methods parallel utils
+#' @import foreach doParallel methods parallel utils
+#' @importFrom Biostrings readBStringSet
+#' @importFrom Biostrings BStringSet
 #' @export
 setGeneric(
   "SWeeP",
@@ -456,7 +458,10 @@ setMethod("SWeeP", "dgCMatrix",    .sweepGeneric)
 #' in compact vectors. Scientific reports, 10(1):1–10.
 #' 
 #' @rdname SWeePlite
-#' @import foreach doParallel Biostrings methods parallel  utils
+#' @import foreach doParallel methods parallel utils
+#' @importFrom Biostrings readBStringSet
+#' @importFrom Biostrings BStringSet
+
 #' @export
 setGeneric(
   "SWeePlite",
@@ -965,7 +970,9 @@ orthBase <- function(lin=NULL, col,seqtype='AA',mask = c(2,1,2),seed=NULL) {
 #' 
 #' 
 #' @rdname extractHDV
-#' @import foreach doParallel Biostrings methods  utils
+#' @import foreach doParallel methods  utils
+#' @importFrom Biostrings readBStringSet
+#' @importFrom Biostrings BStringSet
 #' @export
 setGeneric(
   "extractHDV",

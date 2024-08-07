@@ -47,7 +47,6 @@ Depends:
 Imports:
         tools, 
         stringi,
-	pracma
 Suggests: 
         Rtsne,
         ape,

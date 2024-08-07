@@ -6,8 +6,8 @@ author:
    affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
 - name: Danrley Rafael Fernandes
   affiliation: Federal University of Paraná, Graduate in Biological Sciences, Curitiba, Paraná, Brazil.
-- names: Júlia Formighieri Varaschin
-   affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
+- name: Julia Formighieri Varaschin
+  affiliation: Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
 -  name: Camilla Reginatto De Pierri
    affiliation: 
    - Federal University of Paraná, Graduate Program in Bioinformatics, Curitiba, Paraná, Brazil.
