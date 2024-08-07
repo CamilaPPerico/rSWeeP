@@ -1,5 +1,5 @@
 # internal function, not to export
-
+utils::globalVariables(c("seqtype", "mask")) 
 
 convertMask = function(x){
 	#input  format: x = c(2,1,2)
@@ -402,7 +402,7 @@ HDVparallel <- function(N,ncores,input,seqtype,mask,bin,norm,lenmax){
 
 	# START PARALLEL 
 	ncores = NCoresDef(ncores)
-	sw.cluster <- parallel::makeCluster(ncores, type = "FORK") 
+	sw.cluster <- parallel::makeCluster(ncores, type = "PSOCK") 
 	doParallel::registerDoParallel(cl = sw.cluster)
 	foreach::getDoParWorkers()
 	i=NULL
