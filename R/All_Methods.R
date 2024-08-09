@@ -1040,7 +1040,6 @@ setGeneric(
         }
     }
   
-    
 
     if(N>1){    output$info$saturation = rowSums(output$HDV!=0)/lenmax    } 
     else {      output$info$saturation = sum(output$HDV!=0)/lenmax    }
@@ -1100,13 +1099,13 @@ setGeneric(
         if(verbose){ cat(paste(' - complete\n')) }
 
     } # end for k in N
-
+    
   
-    if(N>1){    output$saturation = rowSums(output$HDV!=0)/lenmax    } 
-    else {      output$saturation = sum(output$HDV!=0)/lenmax    }
+    if(N>1){    output$info$saturation = rowSums(output$HDV!=0)/lenmax    } 
+    else {      output$info$saturation = sum(output$HDV!=0)/lenmax    }
 
     end_time = proc.time()
-    output$timeElapsed = (end_time - start_time)[[3]] 
+    output$info$timeElapsed = (end_time - start_time)[[3]] 
 
     return(output)
 
