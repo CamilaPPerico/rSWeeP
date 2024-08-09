@@ -30,7 +30,7 @@
 #' @param concatenate   defines whether to treat each sequence individually or to concatenate them into a single sequence.
 #'                      Available only for inputs in biological sequence format. The default is FALSE.
 #' @param norm   normalization of HDV. This must be one of 'none', 'log' or 'logNeg'. 'none' is no normalization, 
-#'               'log' is simple logarithm, ´logNeg´ option is indicated for analyzing genes and short sequences.
+#'               'log' is simple logarithm, ´Neg´ to convert nulls into -1, ´logNeg´ option is indicated for analyzing genes and short sequences.
 #'               Default is ´none´.
 #' @param RNAseqdata  For RNAseq data use 'TRUE' or apply the parameter `transpose=TRUE'. Default is FALSE.
 #' @param ncores    Number of CPU cores used for parallel processing. Default is 2.
@@ -407,7 +407,7 @@ setMethod("SWeeP", "dgCMatrix",    .sweepGeneric)
 #' @param concatenate   defines whether to treat each sequence individually or to concatenate them into a single sequence
 #'                      Available only for inputs in biological sequence format. The default is FALSE.
 #' @param norm   normalization of HDV. This must be one of 'none', 'log' or 'logNeg'. 'none' is no normalization, 
-#'               'log' is simple logarithm, ´logNeg´ option is indicated for analyzing genes and short sequences.
+#'               'log' is simple logarithm, ´Neg´ to convert nulls into -1, ´logNeg´ option is indicated for analyzing genes and short sequences.
 #'               Default is ´none´.
 #' @param RNAseqdata  For RNAseq data use 'TRUE' or apply the parameter `transpose=TRUE'. Default is FALSE.
 #' @param ncores    Number of CPU cores used for parallel processing. Default is 2.

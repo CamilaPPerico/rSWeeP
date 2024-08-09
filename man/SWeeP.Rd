@@ -145,7 +145,7 @@ SWeeP(input, orthbase, bin = FALSE, ...)
 \item{ncores}{Number of CPU cores used for parallel processing. Default is 2.}
 
 \item{norm}{normalization of HDV. This must be one of 'none', 'log' or 'logNeg'. 'none' is no normalization, 
-'log' is simple logarithm, ´logNeg´ option is indicated for analyzing genes and short sequences.
+'log' is simple logarithm, ´Neg´ to convert nulls into -1, ´logNeg´ option is indicated for analyzing genes and short sequences.
 Default is ´none´.}
 
 \item{mask}{reading mask. Available only for inputs in biological sequence format or path for FASTA files. 

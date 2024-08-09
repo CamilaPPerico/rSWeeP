@@ -179,10 +179,15 @@ readmask <- function(seq, mask,seqtype,bin,norm,lenmax){
     	switch(norm,
     		'none'   = {	outseq$count = NULL		},
     		'log'    = {	outseq$count = NULL		},
+    		'Neg'    = {	
+    						outseq$count = rep(-1,lenmax)
+	    					outseq$count[outseq$idx] = 1
+	    					outseq$idx = 1:lenmax 
+    				},
     		'logNeg' = {
-    					outseq$count = rep(-1,lenmax)
-    					outseq$count[outseq$idx] = 1
-    					outseq$idx = 1:lenmax 
+	    					outseq$count = rep(-1,lenmax)
+	    					outseq$count[outseq$idx] = 1
+	    					outseq$idx = 1:lenmax 
 	    			}
 			) # end switch
 
@@ -192,10 +197,15 @@ readmask <- function(seq, mask,seqtype,bin,norm,lenmax){
 		switch(norm,
     		'none'   = {	outseq$count = aux[outseq$idx]			},
     		'log'    = {	outseq$count = log(aux[outseq$idx],base=10)		},
+    		'Neg'    = {
+	    					outseq$count = rep(-1,lenmax)
+	    					outseq$count[outseq$idx] = aux[outseq$idx]
+	    					outseq$idx = 1:lenmax 
+    				},
     		'logNeg' = {
-    					outseq$count = rep(-1,lenmax)
-    					outseq$count[outseq$idx] = log(aux[outseq$idx],base=10)
-    					outseq$idx = 1:lenmax 
+	    					outseq$count = rep(-1,lenmax)
+	    					outseq$count[outseq$idx] = log(aux[outseq$idx],base=10)
+	    					outseq$idx = 1:lenmax 
     				}
 			) # end switch
 
@@ -220,11 +230,17 @@ readmaskVEC <- function(seq, mask,seqtype,bin,norm,lenmax){
 		outseq[outseq!=0] = 1
 
 		if (norm=='logNeg') { 	outseq[outseq==0] = -1  	}
+		if (norm=='Neg') 	{ 	outseq[outseq==0] = -1  	}
 	
 	} else { # count ----------
 
 		switch(norm,
     		'log'    = {	outseq[outseq!=0] = log(outseq[outseq!=0],base=10)	},
+    		'Neg'    = {
+    						idx = which(outseq==0)
+    					 	outseq[outseq!=0] = outseq[outseq!=0]
+    					 	outseq[idx] = -1  	
+    				},
     		'logNeg' = {
     						idx = which(outseq==0)
     					 	outseq[outseq!=0] = log(outseq[outseq!=0],base=10)
@@ -302,7 +318,7 @@ COREloop <- function(xnorm,psz,Mproj,pslist,nps,hdv_vec,nk,bin,norm){
         # sqrt(i)
         mret = (matrix(rep(hdv_vec$idx[lim[i]:lim[i+1]],nps),ncol=nps))%%(matrix(rep(pslist,length(hdv_vec$idx[lim[i]:lim[i+1]])),ncol=nps,byrow=T))
         dt = (1+(mret))%*%Mproj
-        if(!bin | norm=='logNeg'){
+        if(!bin | norm=='logNeg' | norm=='Neg'){
 	        bs = (matrix(rep(hdv_vec$count[lim[i]:lim[i+1]],psz),ncol=psz))*((dt - floor(dt))-0.5)/0.5
         } else {
 	        bs = ((dt - floor(dt))-0.5)/0.5
@@ -362,6 +378,9 @@ MakeLOG <- function(input,bin,norm){
 	        input = log(input,base=10) # os log(0) -> -inf
 	        input[is.infinite(input)]=-1
 	    }	
+	}
+	if(norm=='Neg'){
+        input[input==0]=-1
 	}
     
     return(input)

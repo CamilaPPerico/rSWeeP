@@ -50,8 +50,8 @@ SW.checks <- function(name, param) {
       stop("'transpose' should be one of the options: TRUE - Seurat pattern wich each column is a sample; FALSE - each line is a sample. \n",call.=FALSE)
   }
   else if(name=="norm"){ #[]
-    if(param!='none' & param!='log' & param!='logNeg')
-      stop("'norm' must be one of the following options: `none` for none of normalization options, `log` for logarithm or `logNeg` for logarithm and conversion of nulls to -1. \n",call.=FALSE)
+    if(param!='none' & param!='log' & param!='logNeg' & param!='Neg')
+      stop("'norm' must be one of the following options: `none` for none of normalization options, `log` for logarithm, `Neg` for conversion of nulls to -1 or `logNeg` for logarithm and conversion of nulls to -1. \n",call.=FALSE)
   }
   else if(name=="concatenate"){ #[]
     if(!is.logical(param))

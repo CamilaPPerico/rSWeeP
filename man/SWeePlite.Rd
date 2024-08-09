@@ -159,7 +159,7 @@ SWeePlite(input, psz, bin = FALSE, ncores = NULL, ...)
 \item{...}{other arguments of the function itself}
 
 \item{norm}{normalization of HDV. This must be one of 'none', 'log' or 'logNeg'. 'none' is no normalization, 
-'log' is simple logarithm, ´logNeg´ option is indicated for analyzing genes and short sequences.
+'log' is simple logarithm, ´Neg´ to convert nulls into -1, ´logNeg´ option is indicated for analyzing genes and short sequences.
 Default is ´none´.}
 
 \item{concatenate}{defines whether to treat each sequence individually or to concatenate them into a single sequence
