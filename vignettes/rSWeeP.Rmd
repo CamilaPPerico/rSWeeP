@@ -45,12 +45,14 @@ The  MATLAB version of the method is available at [sWeeP](https://sourceforge.ne
 Tutorials and more information are available at <https://aibialab.github.io/rSWeeP>.
 
 ## Functions
-The package has four functions:
+The package has six functions:
 
   - SWeeP: conventional SWeeP function, in which it is necessary to generate or load an orthonormal basis from a file.
   - orthBase: function to generate the orthonormal matrix to be used by SWeeP in the projection.
   - SWeePlite: SWeeP function with built-in orthonormal basis. Slower function but low RAM usage.
   - extractHDV: extracts only the High Dimensional Vector (HDV) from biological sequences.
+  - PCCI: PhyloTaxonomic Consistency Cophenetic Index, estimates the grouping rate of the taxa in the phylogenetic tree.
+  - PMPG: percentage of Monophyletic and Paraphyletic taxa in the phylogenetic tree.
 
 The SWeeP and SWeePlite functions are responsible for vectorizing the sequences using the referenced SWeeP method (PIERRI, 2019). 
 
@@ -97,11 +99,22 @@ tr = root(tr,outgroup='14_Rhazya_stricta')
 plot(tr)
 ```
 
-To visualize the vectorized data graphically, we provide the metadata with the classes at the family taxonomic level.
+To visualize the vectorized data graphically and evaluate the phylogenetic tree, we provide the metadata with the classes at the family taxonomic level.
 ```{r}
 pathmetadata <- system.file(package = "rSWeeP" , "examples" , "metadata_mitochondrial.csv")
 mt = read.csv(pathmetadata,header=TRUE)
 ```
+
+We evaluated the phylogenetic tree in terms of taxon groupings with the PCCI metric, and checked the percentage of consistent taxa, mono or paraphyletic with the PMPG metric.
+
+```{r eval tree}
+data = data.frame(sp=mt$fileName,family=mt$family) 
+
+PCCI(tr,data) # PhyloTaxonomic Consistency Cophenetic Index
+PMPG(tr,data) # Percentage of Mono or Paraphyletic Groups
+```
+
+
 
 We obtain the PCA and visualize the first components.
 ```{r PCA, fig.height=7,fig.width=9}

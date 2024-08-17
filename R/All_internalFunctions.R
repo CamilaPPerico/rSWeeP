@@ -1,5 +1,5 @@
 # internal function, not to export
-utils::globalVariables(c("seqtype", "mask")) 
+utils::globalVariables(c("seqtype", "mask", "mono")) 
 
 convertMask = function(x){
 	#input  format: x = c(2,1,2)

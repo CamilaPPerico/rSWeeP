@@ -1180,7 +1180,7 @@ setMethod("extractHDV", "character",    .extractHDVfromFolder)
 #' data = data.frame(sp=mt$fileName,family=mt$family) 
 #' PCCI(tree,data)
 #' 
-#' @import methods  utils
+#' @import methods  utils stats
 #' @export
 PCCI <- function(tr,mt=NULL){
   # either provides the branches named by taxon, or provides metadata
@@ -1216,7 +1216,7 @@ PCCI <- function(tr,mt=NULL){
 #' @name PMPG
 #'
 #' @description Phylogenetic tree evaluation function, returns the percentage of Monophyletic
-#'              and Paraphyletic taxa int he phylogenetic tree.
+#'              and Paraphyletic taxa in the phylogenetic tree.
 #'
 #' @param tr        Phylogenetic tree. If the tree contains sample names in the labels, provide
 #'              metadata. If it already contains the names of the taxa, just provide the tree.
@@ -1252,7 +1252,7 @@ PCCI <- function(tr,mt=NULL){
 #' data = data.frame(sp=mt$fileName,family=mt$family) 
 #' PMPG(tree,data)
 #' 
-#' @import methods  utils
+#' @import methods  utils stats
 #' @export
 PMPG <- function(tr,mt=NULL){
   # either provides the branches named by taxon, or provides metadata
