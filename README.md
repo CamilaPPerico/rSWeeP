@@ -11,7 +11,7 @@ if (!require("BiocManager", quietly = TRUE))
 BiocManager::install("rSWeeP")
 ```
 
-See the [website](https://camilapperico.github.io/) for additional information and tutorials.
+See the [website](https://aibialab.github.io/rSWeeP) for additional information and tutorials.
 
 ### Citation
 
