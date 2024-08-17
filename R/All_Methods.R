@@ -1125,3 +1125,149 @@ setMethod("extractHDV", "BStringSet",   .extractHDVinRAM)
 setMethod("extractHDV", "BString",      .extractHDVinRAM) 
 #' @rdname extractHDV
 setMethod("extractHDV", "character",    .extractHDVfromFolder) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Phylogenetic tree evaluation functions ==============================
+
+
+#' @title  PhyloTaxonomic Consistency Cophenetic Index
+#' @name PCCI
+#'
+#' @description Phylogenetic tree evaluation function, estimate of how grouped 
+#'              the samples of the same taxon are in the phylogenetic tree.
+#'
+#' @param tr        Phylogenetic tree. If the tree contains sample names in the labels, provide
+#'              metadata. If it already contains the names of the taxa, just provide the tree.
+#' @param mt    Metadata. The metadata should have the following format: 
+#'              the first column should contain the names of the samples, 
+#'              exactly as they appear on the tree label; 
+#'              the second column should contain the corresponding taxa.
+#'              If the tree already has the labels renamed according to the taxon, 
+#'              it is not necessary to provide metadata.
+#'
+#' @return The PCCI index for each taxon and the mean value
+#'
+#'         `PCCI' returns a `list` containing:
+#' \itemize{
+#'          \item tab: the PCCI value for each taxon in a two-colunm output: taxa and cost
+#'          \item mean: the mean value of PCCI metric
+#'         }
+#'
+#' @author Camila P. Perico
+#'
+#' @details
+#' Empty or NA labels are removed from analyses 
+#'
+#' @examples
+#' 
+#' # Load the sample tree and its metadata
+#' pathtree <- system.file(package = "rSWeeP" , "examples" , "tree_Mitochondrial.tree")
+#' tree = ape::read.tree(pathtree)
+#' pathmetadata <- system.file(package = "rSWeeP" , "examples" , "metadata_mitochondrial.csv")
+#' mt = read.csv(pathmetadata,header=TRUE)
+#' 
+#' data = data.frame(sp=mt$fileName,family=mt$family) 
+#' PCCI(tree,data)
+#' 
+#' @import methods  utils
+#' @export
+PCCI <- function(tr,mt=NULL){
+  # either provides the branches named by taxon, or provides metadata
+
+  # has metadata?
+    if (!is.null(mt)){
+        idx = match(tr$tip.label,mt[,1] )
+        tr$tip.label = mt[idx,2]        
+        
+        # labels matches metadata?
+        if(sum(is.na(idx)) >0){
+            N=sum(is.na(idx))
+            print(paste('There are ',N,' names in the metadata that do not match the labels in the tree.'))
+        }
+
+    }
+
+    if (is.null(tr$edge.length)){
+        tr$edge.length = rep(1,length(tr$edge[,1]))
+    }
+
+    return(quebrataxonCOPHE(tr))
+}
+
+
+
+
+
+
+
+
+#' @title  Percentage of Mono or Paraphyletic Groups
+#' @name PMPG
+#'
+#' @description Phylogenetic tree evaluation function, returns the percentage of Monophyletic
+#'              and Paraphyletic taxa int he phylogenetic tree.
+#'
+#' @param tr        Phylogenetic tree. If the tree contains sample names in the labels, provide
+#'              metadata. If it already contains the names of the taxa, just provide the tree.
+#' @param mt    Metadata. The metadata should have the following format: 
+#'              the first column should contain the names of the samples, 
+#'              exactly as they appear on the tree label; 
+#'              the second column should contain the corresponding taxa.
+#'              If the tree already has the labels renamed according to the taxon, 
+#'              it is not necessary to provide metadata.
+#'
+#' @return The `PMPG' returns a `list` containing:
+#' \itemize{
+#'          \item tab: a dataframe with a three-colunm output: taxa, mono and para. 
+#'                     `mono` and `para` columns returns a boolean value. 
+#'          \item percMono: percentage of Monophyletic taxa
+#'          \item percPara: percentage of Paraphyletic taxa
+#'          \item mean: the mean value of `percMono` and `percPara`
+#'         }
+#'
+#' @author Camila P. Perico
+#'
+#' @details
+#' Empty or NA labels are removed from analyses 
+#'
+#' @examples
+#' 
+#' # Load the sample tree and its metadata
+#' pathtree <- system.file(package = "rSWeeP" , "examples" , "tree_Mitochondrial.tree")
+#' tree = ape::read.tree(pathtree)
+#' pathmetadata <- system.file(package = "rSWeeP" , "examples" , "metadata_mitochondrial.csv")
+#' mt = read.csv(pathmetadata,header=TRUE)
+#' 
+#' data = data.frame(sp=mt$fileName,family=mt$family) 
+#' PMPG(tree,data)
+#' 
+#' @import methods  utils
+#' @export
+PMPG <- function(tr,mt=NULL){
+  # either provides the branches named by taxon, or provides metadata
+    if (!is.null(mt)){
+        tr$tip.label
+        idx = match(tr$tip.label,mt[,1]) 
+        tr$tip.label = mt[idx,2]        
+
+        # labels matches metadata?
+        if(sum(is.na(idx)) >0){
+            N=sum(is.na(idx))
+            print(paste('There are ',N,' names in the metadata that do not match the labels in the tree.'))
+        }
+    }
+
+    return(MonoParaphylMetric(tr))
+
+}

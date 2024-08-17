@@ -415,8 +415,6 @@ Defmask <- function(mask,seqtype){
 
 
 # -----------------------------------------------------------------------------
-# hdv_vec = matrix(0,nrow=N,ncol=lenmax)
-
 HDVparallel <- function(N,ncores,input,seqtype,mask,bin,norm,lenmax){
 
 	# START PARALLEL 
@@ -443,3 +441,164 @@ HDVparallel <- function(N,ncores,input,seqtype,mask,bin,norm,lenmax){
 
 	return(x)
 }
+
+
+
+
+
+
+
+
+
+
+# Phylogenetic tree evaluation functions ==============================
+
+
+
+# -----------------------------------------------------------------------------
+quebrataxonCOPHE <- function(tree){
+  
+  tree$edge.length[] = 1
+  dmat = cophenetic(tree)
+
+  taxa = rownames(dmat)
+  tb = unique(taxa)
+  remove = c(which(is.na(tb)) , which(tb==''))
+  if (length(remove)>=1){  tb = tb[-remove] }
+
+  cost=NULL
+  cost$tab = data.frame(taxa = tb,cost=rep(0,length(tb)))
+
+  for (i in 1:length(tb)) {
+
+    label = tb[i]
+    idx = which(taxa == label)
+    submat = dmat[idx,]
+    binvec = rep(0,length(taxa))
+    binvec[idx] = 1 # peso 0 para internos
+    df = data.frame( dist =  as.vector(t(submat)) , binvec = rep(binvec,length(idx)) )
+    ordem = order(df$dist)
+    df = df[ordem,]
+    df = df[1:max(which(df$binvec==1)),]
+
+    cost$tab[i,2] = costquebra(df$binvec,type='new')
+  }
+
+  # linhas 30 e 18 tem " " e NA
+  idx = which(cost$tab[,1]=="")
+  idx = c(idx,which(is.na(cost$tab[,1])))
+
+  if(length(idx)>0){
+    cost$mean = mean(cost$tab[-idx,2])
+  } else {
+    cost$mean = mean(cost$tab[,2])
+  }
+  
+  return(cost)
+
+}
+
+
+
+# -----------------------------------------------------------------------------
+diff <- function(x){
+	# equivalente diff do matlab , mas apenas para vetores
+	n=length(x)
+	return(x[2:n]-x[1:(n-1)])
+}
+
+
+
+# -----------------------------------------------------------------------------
+costquebra <- function(z,type){
+# Calcula o cost de quebra de taxons; z contém zeros e uns
+	xo = which(z==1)[1]
+	xe = rev(which(z==1))[1]
+	N =  sum(z) # num de vezes que o táxon aparece
+
+	xi = which(z==1)-xo+1
+	# % Distancia média do centroide relativa à distribuição ótima: todos juntos
+	if (N>1){
+		return( (1+sum(diff(which(z[xo:xe]==1))==1))/sum(z) )
+			
+	} else {
+		return(1)
+	}
+} # end function
+
+
+
+
+
+# -----------------------------------------------------------------------------
+MonoParaphylMetric <- function(tr){
+	
+	tr2 = ape::drop.tip(tr,c("",NA)) # remove taxons monophyletics
+	tr=tr2
+	tax=unique(tr$tip.label)	
+
+	N=length(tax)
+
+	k=1
+	n=list()
+	atual = vector(length=N)
+	for (i in 1:N) {
+		atual[i] = ape::is.monophyletic(tr,tax[i])
+	}
+	n[[k]] = atual
+	HaveNOMonophyl = sum(!atual)
+	k=k+1
+
+	nMono = sum(atual)
+	percMono = nMono/N
+
+	past=atual
+
+	N2 = N
+	subtax=tax
+
+	while(HaveNOMonophyl){
+			tr = suppressWarnings(ape::drop.tip(tr,subtax[past]) )# remove taxons monophyletics
+			# supress warning tr  = NULL
+
+		if (is.null(tr)){
+			break
+		}
+
+		subtax = subtax[!past]
+		if (N2==length(subtax)){break}
+
+		N2 = length(subtax)
+		atual = vector(length=N2)
+		for (i in 1:N2) {
+			atual[i] = ape::is.monophyletic(tr,subtax[i])
+		}
+		n[[k]] = atual
+		HaveNOMonophyl = sum(atual)
+		past=atual
+		k=k+1
+	}
+
+	percPara = (sum(unlist(n))-nMono)/N
+
+	out=NULL
+	para = rep(FALSE,length(tax))
+	if(length(n)>1){
+		para = rep(FALSE,length(tax))
+		for (i in 2:length(n)) {
+			para = para+n[[i]]
+		}
+		para = as.logical(para-mono)
+	}
+
+	out$tab = data.frame(taxa = tax, mono=n[[1]], para = para)
+
+	out$percMono = percMono
+	out$percPara = percPara
+	out$metric = sum(unlist(n))/N
+	return(out)
+
+}
+
+
+
