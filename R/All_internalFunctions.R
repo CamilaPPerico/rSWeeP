@@ -582,13 +582,14 @@ MonoParaphylMetric <- function(tr){
 	percPara = (sum(unlist(n))-nMono)/N
 
 	out=NULL
+	mono = n[[1]]
 	para = rep(FALSE,length(tax))
 	if(length(n)>1){
-		para = rep(FALSE,length(tax))
 		for (i in 2:length(n)) {
-			para = para+n[[i]]
+			idx=which(n[[i-1]]==FALSE)
+			para[idx] = as.logical(para[idx]+n[[i]])
 		}
-		para = as.logical(para-mono)
+		# para = as.logical(para-mono)
 	}
 
 	out$tab = data.frame(taxa = tax, mono=n[[1]], para = para)
