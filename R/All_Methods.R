@@ -101,6 +101,7 @@ setGeneric(
     start_time = proc.time()
 
 
+    SW.checks('mask',mask)
     mask = Defmask(mask,seqtype)
 
     if (inherits(input,"AAStringSet"))                                      { seqtype='AA' }
@@ -111,7 +112,6 @@ setGeneric(
 
     ## input checks ---------------------- vv
     SW.checks('norm',norm)
-    SW.checks('mask',mask)
     SW.checks('seqtype',seqtype)
     SW.checks('bin',bin)
     SW.checks('concatenate',concatenate)
@@ -140,6 +140,8 @@ setGeneric(
 
 
     hdv_vec = HDVparallel(N,ncores,input,seqtype,mask,bin,norm,lenmax)
+
+    print(dim(hdv_vec))
     
     output = NULL
 
