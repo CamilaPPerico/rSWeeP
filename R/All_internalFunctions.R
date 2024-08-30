@@ -594,8 +594,8 @@ MonoParaphylMetric <- function(tr){
 
 	out$tab = data.frame(taxa = tax, mono=n[[1]], para = para)
 
-	out$percMono = percMono
-	out$percPara = percPara
+	out$percMono = sum(out$tab$mono)/length(out$tab$tax) # percMono
+	out$percPara = sum(out$tab$para)/length(out$tab$tax) # percPara
 	out$metric = sum(unlist(n))/N
 	return(out)
 
