@@ -480,6 +480,12 @@ quebrataxonCOPHE <- function(tree){
     ordem = order(df$dist)
     df = df[ordem,]
     df = df[1:max(which(df$binvec==1)),]
+    
+    und = unique(df$dist) # únicos de distancia, para ordenar como agrupados os com mesma distância
+    for (k in length(und)) {
+    	idx=which(df$dist == und[k])
+    	df$binvec[idx] = sort(df$binvec[idx],decreasing=TRUE)
+    }
 
     cost$tab[i,2] = costquebra(df$binvec,type='new')
   }
