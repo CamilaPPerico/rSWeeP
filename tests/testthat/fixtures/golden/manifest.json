@@ -1,0 +1,209 @@
+{
+  "package": "rSWeeP",
+  "commit": "c69e6bb-feature-automated-tests",
+  "r_version": "4.5.2",
+  "date": "2026-10-23",
+  "files": {
+    "mproj_50x10_seed647474747.csv": {
+      "description": "Mproj projection matrix 50x10 for psz=10 with seed=647474747",
+      "format": "csv",
+      "dims": [
+        50,
+        10
+      ],
+      "sha256": "71f37e51d3a2fe59e41895aeac8012f44cc55657893d0616fd25e279fc149f5e",
+      "params": {
+        "nps": 50,
+        "psz": 10,
+        "seed": 647474747
+      }
+    },
+    "mproj_50x600_seed647474747.csv": {
+      "description": "Mproj projection matrix 50x600 for psz=600 with seed=647474747",
+      "format": "csv",
+      "dims": [
+        50,
+        600
+      ],
+      "sha256": "f832be2c5258ca889d744988339cb175953aac30de3b293b21ae7dd397e9c71d",
+      "params": {
+        "nps": 50,
+        "psz": 600,
+        "seed": 647474747
+      }
+    },
+    "orthbase_aa_400x10.csv": {
+      "description": "orthBase matrix 400x10 for AA (mask c(1,1,1)) seed=647474747",
+      "format": "csv",
+      "dims": [
+        400,
+        10
+      ],
+      "sha256": "efa0d2b390cbae19a67ae081f637c3e5d04e04997bf1ee13529adeb7d40cc566",
+      "params": {
+        "lin": 400,
+        "col": 10,
+        "seqtype": "AA",
+        "seed": 647474747
+      }
+    },
+    "orthbase_nt_256x10.csv": {
+      "description": "orthBase matrix 256x10 for NT (mask c(2,1,2)) seed=647474747",
+      "format": "csv",
+      "dims": [
+        256,
+        10
+      ],
+      "sha256": "33fff36ca8f4172a9bc70f707d833cd2164d4899f1b8279ab6408d7048efb04a",
+      "params": {
+        "lin": 256,
+        "col": 10,
+        "seqtype": "NT",
+        "seed": 647474747
+      }
+    },
+    "hdv_compact_aa_400.csv": {
+      "description": "HDV matrix 14x400 for aaMitochondrial with compact mask c(1,1,1)",
+      "format": "csv",
+      "dims": [
+        14,
+        8000
+      ],
+      "sha256": "6954c2b56c3a1d8a1bca7912eee83c344ed7bc2463bc9fce59938ffbc1108279",
+      "params": {
+        "mask": [
+          1,
+          1,
+          1
+        ],
+        "seqtype": "AA",
+        "bin": false
+      }
+    },
+    "hdv_mito_14x160000.mtx": {
+      "description": "HDV sparse matrix 14x160000 for aaMitochondrial canonical mask c(2,1,2)",
+      "format": "mtx",
+      "dims": [
+        14,
+        160000
+      ],
+      "sha256": "59507ab7411be38ecc63e2e3ca11cc11eaefd5135a1c06e7ba12c0a367b623af",
+      "params": {
+        "mask": [
+          2,
+          1,
+          2
+        ],
+        "seqtype": "AA",
+        "bin": false,
+        "saturation": [
+          0.0124,
+          0.0126,
+          0.0124,
+          0.0126,
+          0.0122,
+          0.0126,
+          0.012,
+          0.0124,
+          0.0125,
+          0.0124,
+          0.0124,
+          0.0121,
+          0.0124,
+          0.0345
+        ]
+      }
+    },
+    "sweep_mito_aa_14x600_count_none.csv": {
+      "description": "SWeeP projection 14x600 for aaMitochondrial (count mode, norm=none)",
+      "format": "csv",
+      "dims": [
+        14,
+        600
+      ],
+      "sha256": "60e547290b8e95b2fceddfb612c95121f9f190ce52326075f0e30a16042d71f6",
+      "params": {
+        "psz": 600,
+        "bin": false,
+        "norm": "none",
+        "mask": [
+          2,
+          1,
+          2
+        ]
+      }
+    },
+    "sweep_mito_aa_14x600_bin_none.csv": {
+      "description": "SWeeP projection 14x600 for aaMitochondrial (binary mode, norm=none)",
+      "format": "csv",
+      "dims": [
+        14,
+        600
+      ],
+      "sha256": "6c40cbca7f5ed6740d282829b935136f7cbd816903ecc512b7eac8aaa7b1eb07",
+      "params": {
+        "psz": 600,
+        "bin": true,
+        "norm": "none",
+        "mask": [
+          2,
+          1,
+          2
+        ]
+      }
+    },
+    "sweep_matrix_dense_10x25_all_modes.csv": {
+      "description": "SWeeP projection of synthetic 10x25 matrix with psz=5 across 4 modes",
+      "format": "csv",
+      "dims": [
+        10,
+        20
+      ],
+      "sha256": "8c26eae6a8d7a7d5a3af4c8850191626fd14761726c7807c44b7bd96db640673",
+      "params": {
+        "nrow": 10,
+        "ncol": 25,
+        "psz": 5
+      }
+    },
+    "sweep_matrix_sparse_10x25.mtx": {
+      "description": "Synthetic 10x25 sparse count matrix for scRNA-seq parity testing",
+      "format": "mtx",
+      "dims": [
+        10,
+        25
+      ],
+      "sha256": "efc1a4d8de8c02a96bf57a8dabbaff0df45e2f73b2f20390932248a963c573d8",
+      "params": {
+        "nrow": 10,
+        "ncol": 25
+      }
+    },
+    "pcci_mitochondrial.csv": {
+      "description": "PCCI table per family for aaMitochondrial tree",
+      "format": "csv",
+      "dims": [
+        5,
+        2
+      ],
+      "sha256": "7c30556c5c2f884a0b73143a4ca68ece8c79c8269e51d2f31bfb4f1e82f0ed69",
+      "params": {
+        "mean": 1
+      }
+    },
+    "pmpg_mitochondrial.csv": {
+      "description": "PMPG table per family for aaMitochondrial tree",
+      "format": "csv",
+      "dims": [
+        5,
+        3
+      ],
+      "sha256": "86f8f7521426829596a0ea03c4d78479e30dccaff56746273e40f5e07a6677dd",
+      "params": {
+        "percMono": 100,
+        "percPara": 0,
+        "metric": 100
+      }
+    }
+  }
+}

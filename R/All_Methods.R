@@ -85,6 +85,7 @@
 #' Scientific reports, 10(1):1–10.
 #' 
 #' @import foreach doParallel methods parallel utils
+#' @importClassesFrom Matrix dgCMatrix
 #' @importFrom Biostrings readBStringSet
 #' @importFrom Biostrings BStringSet
 #' @export
@@ -461,6 +462,7 @@ setMethod("SWeeP", "dgCMatrix",    .sweepGeneric)
 #' 
 #' @rdname SWeePlite
 #' @import foreach doParallel methods parallel utils
+#' @importClassesFrom Matrix dgCMatrix
 #' @importFrom Biostrings readBStringSet
 #' @importFrom Biostrings BStringSet
 
@@ -734,15 +736,14 @@ In this case, use the 'transpose=TRUE' option.\n\n")
 
         hdv_vec = NULL
         if (transpose | RNAseqdata){ # se precisar transpor, col=sample
-            aux = input[,k]
-            if(norm!='none'){ aux = MakeLOG(aux,bin,norm) }
-            hdv_vec$idx = as.vector(which(aux!=0))
-            if(!bin){ hdv_vec$count = as.vector(input[aux!=0,k]) }
+            aux = as.vector(input[,k])
         } else {
-            aux = input[k,]
-            if(norm!='none'){ aux = MakeLOG(aux,bin,norm) }
-            hdv_vec$idx = as.vector(which(aux!=0))
-            if(!bin){ hdv_vec$count = as.vector(input[k,aux!=0]) }
+            aux = as.vector(input[k,])
+        }
+        aux = MakeLOG(aux,bin,norm)
+        hdv_vec$idx = as.vector(which(aux!=0))
+        if(!bin | norm=='logNeg' | norm=='Neg'){
+            hdv_vec$count = as.vector(aux[hdv_vec$idx])
         }
         
         output$proj[k,] = COREloop(par$xnorm,psz,par$Mproj,par$pslist,par$nps,hdv_vec,nk,bin,norm)

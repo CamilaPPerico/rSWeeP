@@ -33,9 +33,13 @@ SW.checks <- function(name, param) {
     if(!is.logical(param))
       stop("'bin' should be logical. TRUE for binary mode, FALSE for counting one. \n",call.=FALSE)
   } 
-  else if(name=="readEachFASTA"){ #[]
+  else if(name=="readEachFASTA" || name=="lowRAMmode"){ #[]
     if(!is.logical(param))
-      stop("'readEachFASTA' should be logical. TRUE to read one FASTA at a time, FALSE otherwise. \n",call.=FALSE)
+      stop("'lowRAMmode' should be logical. TRUE to read one FASTA at a time, FALSE otherwise. \n",call.=FALSE)
+  } 
+  else if(name=="ncores"){ #[]
+    if(!is.null(param) && (!is.numeric(param) || length(param)!=1 || param<=0 || (param-floor(param))!=0))
+      stop("'ncores' should be a positive integer or NULL.\n",call.=FALSE)
   } 
   else if(name=="fastalist"){ #[]
     if(length(param)==0)

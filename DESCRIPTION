@@ -47,6 +47,7 @@ Depends:
 Imports:
         tools, 
         stringi,
+        Matrix,
 Suggests: 
         Rtsne,
         ape,
@@ -55,6 +56,8 @@ Suggests:
         rmarkdown,
         tictoc,
 	BiocStyle,
+        jsonlite,
+        digest,
         testthat (>= 3.0.0)
 Encoding: UTF-8
 RoxygenNote: 7.3.2

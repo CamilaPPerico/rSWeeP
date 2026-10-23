@@ -144,7 +144,7 @@ returnPOT <- function(seq,mask,seqtype){
 
     if (lmer>m){
     	remove = which(mask==0)
-	    maskwin = maskwin[,-remove]
+	    maskwin = maskwin[,-remove, drop = FALSE]
     }
 	maskwin = maskwin-1	
     
@@ -302,32 +302,29 @@ seq2numlist <- function(namefile,seqtype){
 
 
 COREloop <- function(xnorm,psz,Mproj,pslist,nps,hdv_vec,nk,bin,norm){
-    ntimes = ceiling(length(hdv_vec$idx)/nk);
-    lim = 1
-    for (i in 1:ntimes){
-        lim = c(lim,nk*i)
+    if (length(hdv_vec$idx) == 0) {
+        return(rep(0, psz))
     }
-    lim[ntimes+1] = length(hdv_vec$idx) 
-
-    
+    tot = length(hdv_vec$idx)
+    ntimes = ceiling(tot/nk)
 
     x <- foreach(
       i = 1:ntimes, 
       .combine = 'cbind'
     ) %dopar% {
-        # sqrt(i)
-        mret = (matrix(rep(hdv_vec$idx[lim[i]:lim[i+1]],nps),ncol=nps))%%(matrix(rep(pslist,length(hdv_vec$idx[lim[i]:lim[i+1]])),ncol=nps,byrow=T))
+        idx_sub = ((i - 1) * nk + 1):min(i * nk, tot)
+        mret = (matrix(rep(hdv_vec$idx[idx_sub],nps),ncol=nps))%%(matrix(rep(pslist,length(idx_sub)),ncol=nps,byrow=T))
         dt = (1+(mret))%*%Mproj
         if(!bin | norm=='logNeg' | norm=='Neg'){
-	        bs = (matrix(rep(hdv_vec$count[lim[i]:lim[i+1]],psz),ncol=psz))*((dt - floor(dt))-0.5)/0.5
+	        bs = (matrix(rep(hdv_vec$count[idx_sub],psz),ncol=psz))*((dt - floor(dt))-0.5)/0.5
         } else {
 	        bs = ((dt - floor(dt))-0.5)/0.5
         }
         as.double(colSums(bs)) /xnorm
       }
 
-    if(ntimes>1){ return(rowSums(x))  } 
-    else { return(x) }
+    if(ntimes>1){ return(as.double(rowSums(x)))  } 
+    else { return(as.double(x)) }
 }
 
 
@@ -368,6 +365,9 @@ NCoresDef <- function(ncores) {
 # -----------------------------------------------------------------------------
 MakeLOG <- function(input,bin,norm){
 
+	if(bin){
+		input[input!=0] = 1
+	}
 	if(norm=='log' & !bin){
         input[input!=0] = log(input[input!=0],base=10) # os log(0) -> -inf
 	}
@@ -482,7 +482,7 @@ quebrataxonCOPHE <- function(tree){
     df = df[1:max(which(df$binvec==1)),]
     
     und = unique(df$dist) # únicos de distancia, para ordenar como agrupados os com mesma distância
-    for (k in length(und)) {
+    for (k in seq_along(und)) {
     	idx=which(df$dist == und[k])
     	df$binvec[idx] = sort(df$binvec[idx],decreasing=TRUE)
     }
